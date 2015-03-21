@@ -3,17 +3,17 @@
 using std::istream;
 using std::ostream;
 
-ostream & operator<<(ostream &os, const Commande &c)
+ostream & operator<<(ostream &os, const CCommande &c)
 {
 	return os << c.GetSymbole();
 }
-istream & operator>>(istream &is, Commande &c)
+istream & operator>>(istream &is, CCommande &c)
 {
 	if (is) return is;
 	char ch;
 	if (is >> ch)
 	{
-		c = Commande(ch);
+		c = CCommande(ch);
 	}
 	return is;
 }

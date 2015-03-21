@@ -1,18 +1,23 @@
+#include "position.h";
 #pragma once
 
 class CItem
 {
 public:
-	CItem();
 	CItem(CPosition pos);
 	CItem(short x, short y);
-	~CItem();
 
-	Cposition getPosItem();
+	CPosition getPosItem() const;
 	void setPosItem(CPosition pos);
-	void setPosItem(short x, short y);
+
+	bool getIsActive() const;
+	void Activate();
+	void disable();
+	
+	bool operator==(CItem const& a); 
 
 private:
-	CPosition positem_;/*changer int pour class position*/ 
+	CPosition positem_;
+	bool isActive;
 
 };

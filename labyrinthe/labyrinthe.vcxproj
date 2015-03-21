@@ -78,11 +78,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Commande.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Orientation.h" />
     <ClInclude Include="Position.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Commande.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Orientation.cpp" />
   </ItemGroup>

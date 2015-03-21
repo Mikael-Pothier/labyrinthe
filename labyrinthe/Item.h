@@ -1,12 +1,11 @@
 #pragma once
 
 #include "Position.h"
-#include <iostream>
-using std::ostream;
 
 class CItem
 {
 public:
+	CItem();
 	CItem(CPosition pos, char symbole, unsigned short duree);
 	CItem(short x, short y, char symbole, unsigned short duree);
 
@@ -29,4 +28,7 @@ private:
 	unsigned short duree_;
 	char symbole_;
 };
+
+#include <iosfwd>
+using std::ostream;
 ostream& operator<<(ostream &os, const CItem &it);

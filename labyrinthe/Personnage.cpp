@@ -1,57 +1,64 @@
 #include "Personnage.h";
+#include <iostream>
+using std::ostream;
 
 CPersonnage::CPersonnage()
 {
-	NbPas_ = NbPasDefaut;
-	Vision_ = VisionDefaut;
+	nb_pas_ = NB_PAS_DEFAUT;
+	vision_ = VISION_DEFAUT;
 	direction_ = Orientation::Nord;
 
 }
 
-CPersonnage::CPersonnage(CPosition pos,unsigned short pasDepart,unsigned short visionDepart)
+CPersonnage::CPersonnage(CPosition pos, unsigned short pasDepart, unsigned short visionDepart)
 {
-	NbPas_ = pasDepart;
-	Vision_ = visionDepart;
-	posPersonnage_ = pos;
+	nb_pas_ = pasDepart;
+	vision_ = visionDepart;
+	pos_personnage_ = pos;
 	direction_ = Orientation::Nord;
 }
 
-CPersonnage::CPersonnage(unsigned short x,unsigned short y,unsigned short pasDepart,unsigned short visionDepart)
+CPersonnage::CPersonnage(unsigned short x, unsigned short y, unsigned short pasDepart, unsigned short visionDepart)
 {
-	NbPas_ = pasDepart;
+	nb_pas_ = pasDepart;
 	visionDepart = visionDepart;
-	posPersonnage_= CPosition(x,y);
+	pos_personnage_ = CPosition(x, y);
 	direction_ = Orientation::Nord;
 }
 
 short CPersonnage::GetNbPas()
 {
-	return NbPas_;
+	return nb_pas_;
 }
 
 void CPersonnage::SetNbPas(unsigned short pas)
 {
-	NbPas_=pas;
+	nb_pas_ = pas;
 }
 
 short CPersonnage::GetVision()
 {
-	return Vision_;
+	return vision_;
 }
 
 void CPersonnage::SetVision(unsigned short vision)
 {
-	Vision_=vision;
+	vision_ = vision;
 }
 
-Orientation CPersonnage::GetDirection()
+Orientation CPersonnage::GetDirection() const
 {
 	return direction_;
 }
 
 void CPersonnage::DescendrePas()
 {
-	--NbPas_;
+	--nb_pas_;
+}
+
+CPosition CPersonnage::GetPosition() const
+{
+	return pos_personnage_;
 }
 
 void CPersonnage::Marcher()
@@ -59,22 +66,38 @@ void CPersonnage::Marcher()
 	switch (GetDirection())
 	{
 	case Nord:
-		posPersonnage_ = CPosition(posPersonnage_.GetX(),posPersonnage_.GetY()-1);
+		pos_personnage_ = CPosition(pos_personnage_.GetX(), pos_personnage_.GetY() - 1);
 		break;
 	case Sud:
-		posPersonnage_ = CPosition(posPersonnage_.GetX(),posPersonnage_.GetY()+1);
+		pos_personnage_ = CPosition(pos_personnage_.GetX(), pos_personnage_.GetY() + 1);
 		break;
 	case Est:
-		posPersonnage_ = CPosition(posPersonnage_.GetX()+1,posPersonnage_.GetY());
+		pos_personnage_ = CPosition(pos_personnage_.GetX() + 1, pos_personnage_.GetY());
 		break;
 	case Ouest:
-		posPersonnage_ = CPosition(posPersonnage_.GetX()-1,posPersonnage_.GetY());
+		pos_personnage_ = CPosition(pos_personnage_.GetX() - 1, pos_personnage_.GetY());
 		break;
 	}
 	DescendrePas();
 }
 
-bool CPersonnage::estMort()
+bool CPersonnage::EstMort()
 {
-	return GetNbPas() ==0;
+	return GetNbPas() == 0;
+}
+
+ostream & operator<<(ostream &os, const CPersonnage &p)
+{
+	switch (p.GetDirection())
+	{
+	case Est:
+		os << '>'; break;
+	case Nord:
+		os << 'A'; break;
+	case Ouest:
+		os << '<'; break;
+	case Sud:
+		os << 'V'; break;
+	}
+	return os;
 }

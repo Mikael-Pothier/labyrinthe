@@ -1,13 +1,17 @@
+#pragma once;
 #include "Position.h";
 #include "Orientation.h";
-#pragma once;
 
 class CPersonnage
 {
 public:
 	CPersonnage();
-	CPersonnage(CPosition pos,unsigned short pasDepart,unsigned short visionDepart);
-	CPersonnage(unsigned short x,unsigned short y,unsigned short pasDepart,unsigned short visionDepart);
+
+	CPersonnage(CPosition pos, unsigned short pasDepart = NB_PAS_DEFAUT, 
+				unsigned short visionDepart = VISION_DEFAUT);
+
+	CPersonnage(unsigned short x, unsigned short y, unsigned short pasDepart = NB_PAS_DEFAUT,
+				unsigned short visionDepart = VISION_DEFAUT);
 
 	void SetNbPas(unsigned short pas);
 	short GetNbPas();
@@ -15,19 +19,23 @@ public:
 	void SetVision(unsigned short vision);
 	short GetVision();
 
-	Orientation GetDirection();
+	Orientation GetDirection() const;
+	CPosition GetPosition() const;
 
 	void Marcher();
-	bool estMort();
+	bool EstMort();
 private:
-	unsigned short NbPas_;
-	unsigned short Vision_;
+	unsigned short nb_pas_;
+	unsigned short vision_;
 
-	CPosition posPersonnage_;
+	CPosition pos_personnage_;
 	Orientation direction_;
 
-	const short NbPasDefaut=50;
-	const short VisionDefaut=3;
+	static const short NB_PAS_DEFAUT = 50;
+	static const short VISION_DEFAUT = 3;
 
 	void DescendrePas();
 };
+#include <iosfwd>
+using std::ostream;
+ostream& operator<<(ostream &, const CPersonnage &);

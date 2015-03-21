@@ -4,7 +4,7 @@ class CCommande
 {
 	char symbole_;
 public:
-	CCommande(char symbole = ' ') throw() 
+	CCommande(char symbole = ' ') throw()
 		: symbole_(symbole)
 	{
 

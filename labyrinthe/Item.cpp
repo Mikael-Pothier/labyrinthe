@@ -58,7 +58,10 @@ bool CItem::operator==(CItem const& a)
 	//donc vérifier la position pour savoir si on vérifie le meme item
 	return a.GetPosItem() == GetPosItem();
 }
-ostream& operator<<(ostream &os, const CItem &it)
+#include <iostream>
+using std::ostream;
+
+ostream & operator<<(ostream &os, const CItem &it)
 {
 	return os << it.GetSymbole();
 }

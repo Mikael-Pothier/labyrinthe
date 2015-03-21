@@ -4,7 +4,7 @@
 class CMenu
 {
 public:
-	static const Commande AVANCER, GAUCHE, DROITE, RECULER, QUITTER;
-	static void Afficher();
-	static Commande LireCommande();
+	static const CCommande AVANCER, GAUCHE, DROITE, RECULER, QUITTER;
+	static void Afficher(ostream& os);
+	static CCommande LireCommande(istream& is);
 };

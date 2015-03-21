@@ -80,6 +80,7 @@
   <ItemGroup>
     <ClInclude Include="Commande.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="Jeu.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Orientation.h" />
     <ClInclude Include="Position.h" />
@@ -87,6 +88,8 @@
   <ItemGroup>
     <ClCompile Include="Commande.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="Jeu.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Orientation.cpp" />
   </ItemGroup>

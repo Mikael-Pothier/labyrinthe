@@ -1,13 +1,26 @@
-#pragma once
+#include "Item.h";
 
-class CItem
+CItem::CItem()
 {
-public:
-	CItem();
-	~CItem();
+	setPosItem(-1,-1);
+}
 
+CItem::CItem(Cposition pos)
+{
+	setPosItem(pos);
+}
 
+CItem::CItem(short x, short y)
+{
+	setPosItem(x,y);
+}
 
-private:
-	int positem_;/*changer int pour class position*/ 
-};
+Cposition CItem::getPosItem()
+{
+	return positem_;
+}
+
+void CItem::setPosItem(Cposition pos)
+{
+	
+}

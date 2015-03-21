@@ -2,6 +2,7 @@
 #include "Commande.h"
 #include "Menu.h"
 #include "Espace.h"
+
 bool CJeu::Fini()
 {
 	return false;
@@ -26,13 +27,11 @@ void CJeu::Executer(const CCommande & c)
 	}
 	else if (c == CMenu::DROITE)
 	{
-
 	}
 	else if (c == CMenu::GAUCHE)
 	{
 	}
 	else if (c == CMenu::RECULER)
 	{
-
 	}
 }

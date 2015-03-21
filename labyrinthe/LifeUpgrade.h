@@ -1,18 +1,18 @@
 #include "Item.h";
 #pragma once;
 
-class LifeUpgrade : public CItem
+class CLifeUpgrade : public CItem
 {
 public:
-	LifeUpgrade(CPosition pos, char Symbole,unsigned short duree);
-	LifeUpgrade(CPosition pos,char Symbole,unsigned short duree,unsigned short augmentation);
-	LifeUpgrade(short x,short y, char Symbole,unsigned short duree,unsigned short augmentation);
-	LifeUpgrade(short x,short y, char Symbole,unsigned short duree);
+	CLifeUpgrade(CPosition pos, char symbole, unsigned short duree);
+	CLifeUpgrade(CPosition pos, char symbole, unsigned short duree, unsigned short augmentation);
+	CLifeUpgrade(short x, short y, char symbole, unsigned short duree, unsigned short augmentation);
+	CLifeUpgrade(short x, short y, char symbole, unsigned short duree);
 
 	unsigned short getNbPas();
 
 private:
-	unsigned  short NbPas_;
-	const short NbPasDefaut=10;
+	unsigned  short nb_pas_;
+	const short NB_PAS_DEFAUT = 10;
 
 };

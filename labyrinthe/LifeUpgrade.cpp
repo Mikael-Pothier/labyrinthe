@@ -1,32 +1,32 @@
 #include "LifeUpgrade.h";
 
-LifeUpgrade::LifeUpgrade(CPosition pos, char Symbole,unsigned short duree) : CItem(pos,Symbole,duree)
+CLifeUpgrade::CLifeUpgrade(CPosition pos, char Symbole,unsigned short duree) : CItem(pos,Symbole,duree)
 {
-	NbPas_= NbPasDefaut;
+	nb_pas_= NB_PAS_DEFAUT;
 }
 
-LifeUpgrade::LifeUpgrade(CPosition pos, char Symbole,unsigned short duree,unsigned short augmentation) : CItem(pos,Symbole,duree)
+CLifeUpgrade::CLifeUpgrade(CPosition pos, char Symbole,unsigned short duree,unsigned short augmentation) : CItem(pos,Symbole,duree)
 {
 	if(augmentation >0)
-		NbPas_=augmentation;
+		nb_pas_=augmentation;
 	else
-		NbPas_= NbPasDefaut;
+		nb_pas_= NB_PAS_DEFAUT;
 }
 
-LifeUpgrade::LifeUpgrade(short x,short y, char Symbole,unsigned short duree,unsigned short augmentation) : CItem(x,y,Symbole,duree) 
+CLifeUpgrade::CLifeUpgrade(short x,short y, char Symbole,unsigned short duree,unsigned short augmentation) : CItem(x,y,Symbole,duree) 
 {
 	if(augmentation >0)
-		NbPas_=augmentation;
+		nb_pas_=augmentation;
 	else
-		NbPas_= NbPasDefaut;
+		nb_pas_= NB_PAS_DEFAUT;
 }
 
-LifeUpgrade::LifeUpgrade(short x,short y, char Symbole,unsigned short duree): CItem(x,y,Symbole,duree)
+CLifeUpgrade::CLifeUpgrade(short x,short y, char Symbole,unsigned short duree): CItem(x,y,Symbole,duree)
 {
-	NbPas_= NbPasDefaut;
+	nb_pas_= NB_PAS_DEFAUT;
 }
 
-unsigned short LifeUpgrade::getNbPas()
+unsigned short CLifeUpgrade::getNbPas()
 {
-	return NbPas_;
+	return nb_pas_;
 }

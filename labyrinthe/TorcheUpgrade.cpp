@@ -1,32 +1,32 @@
 #include "TorcheUpgrade.h";
 
-CTorcheUpgrade::CTorcheUpgrade(CPosition pos, char Symbole,unsigned short duree) : CItem(pos,Symbole,duree)
+CTorcheUpgrade::CTorcheUpgrade(CPosition pos, char Symbole, unsigned short duree) : CItem(pos, Symbole, duree)
 {
-	Portee_= PorteeDefaut;
+	portee_ = PORTEE_DEFAUT;
 }
 
-CTorcheUpgrade::CTorcheUpgrade(CPosition pos, char Symbole,unsigned short duree,unsigned short augmentation) : CItem(pos,Symbole,duree)
+CTorcheUpgrade::CTorcheUpgrade(CPosition pos, char Symbole, unsigned short duree, unsigned short augmentation) : CItem(pos, Symbole, duree)
 {
-	if(augmentation >0)
-		Portee_=augmentation;
+	if (augmentation > 0)
+		portee_ = augmentation;
 	else
-		Portee_= PorteeDefaut;
+		portee_ = PORTEE_DEFAUT;
 }
 
-CTorcheUpgrade::CTorcheUpgrade(short x,short y, char Symbole,unsigned short duree,unsigned short augmentation) : CItem(x,y,Symbole,duree) 
+CTorcheUpgrade::CTorcheUpgrade(short x, short y, char Symbole, unsigned short duree, unsigned short augmentation) : CItem(x, y, Symbole, duree)
 {
-	if(augmentation >0)
-		Portee_=augmentation;
+	if (augmentation > 0)
+		portee_ = augmentation;
 	else
-		Portee_= PorteeDefaut;
+		portee_ = PORTEE_DEFAUT;
 }
 
-CTorcheUpgrade::CTorcheUpgrade(short x,short y, char Symbole,unsigned short duree): CItem(x,y,Symbole,duree)
+CTorcheUpgrade::CTorcheUpgrade(short x, short y, char Symbole, unsigned short duree) : CItem(x, y, Symbole, duree)
 {
-	Portee_= PorteeDefaut;
+	portee_ = PORTEE_DEFAUT;
 }
 
 unsigned short CTorcheUpgrade::getPortee()
 {
-	return Portee_;
+	return portee_;
 }

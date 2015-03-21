@@ -14,7 +14,7 @@ public:
 	{
 		return symbole_;
 	}
-	bool opertor==(const CCommande &c)
+	bool operator==(const CCommande &c)
 		const throw()
 	{
 		return GetSymbole() == c.GetSymbole();
@@ -22,7 +22,7 @@ public:
 	bool operator!=(const CCommande &c)
 		const throw()
 	{
-		return !(this == c);
+		return !(*this == c);
 	}
 };
 

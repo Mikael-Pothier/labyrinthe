@@ -4,20 +4,26 @@
 class CItem
 {
 public:
-	CItem(CPosition pos);
-	CItem(short x, short y);
+	CItem(CPosition pos,char Symbole, unsigned short durée);
+	CItem(short x, short y, char Symbole,unsigned short durée);
 
-	CPosition getPosItem() const;
-	void setPosItem(CPosition pos);
+	CPosition GetPosItem() const;
+	void SetPosItem(CPosition pos);
 
-	bool getIsActive() const;
+	bool GetIsActive() const;
 	void Activate();
-	void disable();
+	void Disable();
+
+	short GetDuree();
+
+	char GetSymbole();
 	
 	bool operator==(CItem const& a); 
 
 private:
 	CPosition positem_;
-	bool isActive;
+	bool isActive_;
+	unsigned short Duree_;
+	char Symbole_;
 
 };

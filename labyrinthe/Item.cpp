@@ -1,49 +1,62 @@
 #include "Item.h";
 
-CItem::CItem(CPosition pos)
+CItem::CItem(CPosition pos, char Symbole, unsigned short durée)
 {
-	setPosItem(pos);
+	SetPosItem(pos);
+	Duree_=durée;
+	Symbole_=Symbole;
 	Activate();
 }
 
-CItem::CItem(short x, short y)
+CItem::CItem(short x, short y, char Symbole, unsigned short durée)
 {
 	CPosition pos(x,y);
-	setPosItem(pos);
-	
+	SetPosItem(pos);
+	Duree_=durée;
+	Symbole_=Symbole;
 	Activate();
 }
 
-CPosition CItem::getPosItem() const
+CPosition CItem::GetPosItem() const
 {
 	return positem_;
 }
 
-void CItem::setPosItem(CPosition pos)
+void CItem::SetPosItem(CPosition pos)
 {
 	positem_ = pos;
 }
 
-bool CItem::getIsActive() const
+bool CItem::GetIsActive() const
 {
-	return isActive;
+	return isActive_;
 }
 
 void CItem::Activate()
 {
-	isActive=true;
+	isActive_=true;
 }
 
-void CItem::disable()
+void CItem::Disable()
 {
-	isActive=false;
+	isActive_=false;
 }
 
 bool CItem::operator==(CItem const& a)
 {
 	//vu qu'il ne peut pas avoir 2 items a la meme position nous pouvons donc vérifier la position pour savoir si on vérifie le meme item
-	if(a.getPosItem() == getPosItem())
+	if(a.GetPosItem() == GetPosItem())
 		return true;
 
 	return false;
+}
+
+short CItem::GetDuree()
+{
+	return Duree_;
+}
+
+char CItem::GetSymbole()
+{
+	return Symbole_;
 }

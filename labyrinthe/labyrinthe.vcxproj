@@ -89,11 +89,7 @@
   <ItemGroup>
     <ClCompile Include="Commande.cpp" />
     <ClCompile Include="Item.cpp" />
-<<<<<<< HEAD
     <ClCompile Include="LifeUpgrade.cpp" />
-=======
-    <ClCompile Include="Menu.cpp" />
->>>>>>> origin/master
     <ClCompile Include="Orientation.cpp" />
     <ClCompile Include="TorcheUpgrade.cpp" />
   </ItemGroup>

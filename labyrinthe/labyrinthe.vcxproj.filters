@@ -47,14 +47,11 @@
     <ClCompile Include="Commande.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="TorcheUpgrade.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LifeUpgrade.cpp">
-=======
     <ClCompile Include="Menu.cpp">
->>>>>>> origin/master
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

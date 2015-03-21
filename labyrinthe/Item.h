@@ -22,7 +22,7 @@ public:
 
 private:
 	CPosition positem_;
-	bool isActive_;
+	bool EstActive_;
 	unsigned short Duree_;
 	char Symbole_;
 

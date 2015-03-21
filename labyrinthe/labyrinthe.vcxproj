@@ -83,6 +83,7 @@
     <ClInclude Include="LifeUpgrade.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Orientation.h" />
+    <ClInclude Include="Personnage.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="TorcheUpgrade.h" />
   </ItemGroup>
@@ -91,6 +92,7 @@
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="LifeUpgrade.cpp" />
     <ClCompile Include="Orientation.cpp" />
+    <ClCompile Include="Personnage.cpp" />
     <ClCompile Include="TorcheUpgrade.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

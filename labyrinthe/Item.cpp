@@ -10,8 +10,7 @@ CItem::CItem(CPosition pos, char Symbole, unsigned short durée)
 
 CItem::CItem(short x, short y, char Symbole, unsigned short durée)
 {
-	CPosition pos(x,y);
-	SetPosItem(pos);
+	SetPosItem(CPosition(x,y));
 	Duree_=durée;
 	Symbole_=Symbole;
 	Activate();
@@ -29,17 +28,17 @@ void CItem::SetPosItem(CPosition pos)
 
 bool CItem::GetIsActive() const
 {
-	return isActive_;
+	return EstActive_;
 }
 
 void CItem::Activate()
 {
-	isActive_=true;
+	EstActive_=true;
 }
 
 void CItem::Disable()
 {
-	isActive_=false;
+	EstActive_=false;
 }
 
 bool CItem::operator==(CItem const& a)

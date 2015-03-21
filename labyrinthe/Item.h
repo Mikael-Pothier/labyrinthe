@@ -20,8 +20,8 @@ public:
 	short GetDuree();
 
 	char GetSymbole() const;
-
-	bool operator==(CItem const& a);
+	
+	bool operator==(CItem const& a); 
 
 private:
 	CPosition pos_item_;

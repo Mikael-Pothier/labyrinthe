@@ -1,5 +1,8 @@
 #pragma once
 
+#include <locale>
+using std::toupper;
+using std::locale;
 class CCommande
 {
 	char symbole_;
@@ -16,7 +19,9 @@ public:
 	bool operator==(const CCommande &c)
 		const throw()
 	{
-		return GetSymbole() == c.GetSymbole();
+		locale loc("");
+		return toupper(GetSymbole(), loc) == 
+			   toupper(c.GetSymbole(), loc);
 	}
 	bool operator!=(const CCommande &c)
 		const throw()

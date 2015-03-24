@@ -7,7 +7,6 @@ CPersonnage::CPersonnage()
 	nb_pas_ = NB_PAS_DEFAUT;
 	vision_ = VISION_DEFAUT;
 	direction_ = Orientation::Nord;
-
 }
 
 CPersonnage::CPersonnage(CPosition pos, unsigned short pasDepart, unsigned short visionDepart)
@@ -51,6 +50,11 @@ Orientation CPersonnage::GetDirection() const
 	return direction_;
 }
 
+void CPersonnage::SetDirection(Orientation ori)
+{
+	direction_ = ori;
+}
+
 void CPersonnage::DescendrePas()
 {
 	--nb_pas_;
@@ -79,6 +83,16 @@ void CPersonnage::Marcher()
 		break;
 	}
 	DescendrePas();
+}
+
+void CPersonnage::Gauche()
+{
+	SetDirection(PivoterGauche(GetDirection()));
+}
+
+void CPersonnage::Droite()
+{
+	SetDirection(PivoterDroite(GetDirection()));
 }
 
 bool CPersonnage::EstMort()

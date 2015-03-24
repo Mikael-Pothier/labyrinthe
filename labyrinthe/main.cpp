@@ -11,12 +11,12 @@ int main()
 	CMenu::Afficher(cout);
 	CCommande c;
 
-	while (!jeu.Fini() &&
-			(c = CMenu::LireCommande(cin),
-			 c != CMenu::QUITTER))
+	while (!jeu.Fini() && 
+		(c = CMenu::LireCommande(cin), c != CMenu::QUITTER))
 	{
 		jeu.Executer(c);
 		jeu.AfficherEtat(cout);
+		CMenu::Afficher(cout);
 	}
 	return 0;
 }

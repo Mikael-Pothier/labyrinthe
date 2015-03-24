@@ -20,9 +20,12 @@ public:
 	short GetVision();
 
 	Orientation GetDirection() const;
+	void SetDirection(const Orientation);
 	CPosition GetPosition() const;
 
 	void Marcher();
+	void Gauche();
+	void Droite();
 	bool EstMort();
 private:
 	unsigned short nb_pas_;

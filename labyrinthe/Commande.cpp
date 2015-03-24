@@ -9,7 +9,7 @@ ostream & operator<<(ostream &os, const CCommande &c)
 }
 istream & operator>>(istream &is, CCommande &c)
 {
-	if (is) return is;
+	//if (is) return is;
 	char ch;
 	if (is >> ch)
 	{

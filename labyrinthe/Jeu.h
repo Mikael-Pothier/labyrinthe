@@ -21,7 +21,7 @@ class CJeu
 public:
 	CJeu() throw() : perso_(POS_PERSO_DEFAUT)
 	{
-
+		//dfgsdghdfg
 	}
 	bool Fini();
 	void AfficherEtat(ostream &) const;

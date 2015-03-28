@@ -144,3 +144,8 @@ ostream & operator<<(ostream &os, const CPersonnage &p)
 	}
 	return os;
 }
+
+void CPersonnage::SetPosition(CPosition pos)
+{
+	pos_personnage_ = pos;
+}

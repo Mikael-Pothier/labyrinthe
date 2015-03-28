@@ -25,6 +25,7 @@ public:
 	Orientation GetDirection() const;
 	void SetDirection(const Orientation);
 	CPosition GetPosition() const;
+	void SetPosition(CPosition pos);
 
 	void Avancer();
 	void Reculer();

@@ -11,6 +11,8 @@ CJeu::POS_PERSO_DEFAUT = CPosition(1, 1),
 CJeu::POS_ITEMS_DEFAUT = CPosition(5, 5),
 CJeu::POS_OBJECTIF_DEFAUT = CPosition(10, 10);
 
+const char ESPACE_VIDE = ' ';
+
 bool CJeu::Fini()
 {
 	return perso_.GetPosition() == objectif_;
@@ -29,7 +31,7 @@ void CJeu::AfficherEtat(ostream & os) const
 				os << perso_;
 			}
 			else
-				os << ' ';
+				os << ESPACE_VIDE;
 		}
 	}
 }
@@ -38,7 +40,7 @@ void CJeu::Executer(const CCommande & c)
 {
 	if (c == CMenu::AVANCER)
 	{
-		perso_.Marcher();
+		perso_.Avancer();
 	}
 	else if (c == CMenu::DROITE)
 	{
@@ -50,5 +52,6 @@ void CJeu::Executer(const CCommande & c)
 	}
 	else if (c == CMenu::RECULER)
 	{
+		perso_.Reculer();
 	}
 }

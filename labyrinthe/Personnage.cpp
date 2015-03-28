@@ -9,20 +9,25 @@ CPersonnage::CPersonnage()
 	direction_ = Orientation::Nord;
 }
 
-CPersonnage::CPersonnage(CPosition pos, unsigned short pasDepart, unsigned short visionDepart)
+CPersonnage::CPersonnage(CPosition pos, unsigned short pasDepart, 
+						unsigned short visionDepart, unsigned short vitesse)
 {
-	nb_pas_ = pasDepart;
-	vision_ = visionDepart;
+	SetNbPas(pasDepart);
+	SetVision(visionDepart);
 	pos_personnage_ = pos;
-	direction_ = Orientation::Nord;
+	SetDirection(Orientation::Nord);
+	SetVitesse(vitesse);
 }
 
-CPersonnage::CPersonnage(unsigned short x, unsigned short y, unsigned short pasDepart, unsigned short visionDepart)
+CPersonnage::CPersonnage(unsigned short x, unsigned short y, 
+						unsigned short pasDepart, unsigned short visionDepart, 
+						unsigned short vitesse)
 {
-	nb_pas_ = pasDepart;
-	visionDepart = visionDepart;
+	SetNbPas(pasDepart);
+	SetVision(visionDepart);
 	pos_personnage_ = CPosition(x, y);
-	direction_ = Orientation::Nord;
+	SetDirection(Orientation::Nord);
+	SetVitesse(vitesse);
 }
 
 short CPersonnage::GetNbPas()
@@ -65,21 +70,45 @@ CPosition CPersonnage::GetPosition() const
 	return pos_personnage_;
 }
 
-void CPersonnage::Marcher()
+unsigned short CPersonnage::GetVitesse() const
+{
+	return vitesse_;
+}
+
+void CPersonnage::SetVitesse(const unsigned short vitesse)
+{
+	vitesse_ = vitesse;
+}
+
+void CPersonnage::Avancer()
+{
+	Marcher(GetVitesse());
+}
+
+void CPersonnage::Reculer()
+{
+	Marcher( -( GetVitesse() / 2 ) );
+}
+
+void CPersonnage::Marcher(const short vitesse)
 {
 	switch (GetDirection())
 	{
 	case Nord:
-		pos_personnage_ = CPosition(pos_personnage_.GetX(), pos_personnage_.GetY() - 1);
+		pos_personnage_ = CPosition(pos_personnage_.GetX(), 
+						  pos_personnage_.GetY() - vitesse);
 		break;
 	case Sud:
-		pos_personnage_ = CPosition(pos_personnage_.GetX(), pos_personnage_.GetY() + 1);
+		pos_personnage_ = CPosition(pos_personnage_.GetX(), 
+						  pos_personnage_.GetY() + vitesse);
 		break;
 	case Est:
-		pos_personnage_ = CPosition(pos_personnage_.GetX() + 1, pos_personnage_.GetY());
+		pos_personnage_ = CPosition(pos_personnage_.GetX() + vitesse, 
+						  pos_personnage_.GetY());
 		break;
 	case Ouest:
-		pos_personnage_ = CPosition(pos_personnage_.GetX() - 1, pos_personnage_.GetY());
+		pos_personnage_ = CPosition(pos_personnage_.GetX() - vitesse,
+						  pos_personnage_.GetY());
 		break;
 	}
 	DescendrePas();

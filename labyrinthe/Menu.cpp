@@ -5,7 +5,7 @@ CMenu::AVANCER = CCommande('W'),
 CMenu::GAUCHE  = CCommande('A'),
 CMenu::DROITE  = CCommande('D'),
 CMenu::RECULER = CCommande('S'),
-CMenu::QUITTER = CCommande('\t');//caractère Tab
+CMenu::QUITTER = CCommande('Q');
 
 #include <iostream>
 void CMenu::Afficher(ostream& os)
@@ -14,7 +14,7 @@ void CMenu::Afficher(ostream& os)
 	   << "Gauche: "  << GAUCHE  << "; "		 
 	   << "Droite: "  << DROITE  << "; "
 	   << "Reculer: " << RECULER << "; "
-	   << "Quitter: " << "Tab" << "\n";
+	   << "Quitter: " << QUITTER << "\n";
 }
 
 CCommande CMenu::LireCommande(istream& is)

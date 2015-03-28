@@ -13,8 +13,10 @@ class CJeu
 	CPosition objectif_;
 	static const CPosition
 		POS_PERSO_DEFAUT, POS_ITEMS_DEFAUT, POS_OBJECTIF_DEFAUT;
+	static const char
+		ESPACE_VIDE;
 public:
-	CJeu() throw(): perso_(POS_PERSO_DEFAUT)
+	CJeu() throw() : perso_(POS_PERSO_DEFAUT)
 	{
 
 	}

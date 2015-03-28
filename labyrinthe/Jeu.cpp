@@ -11,7 +11,7 @@ CJeu::POS_PERSO_DEFAUT = CPosition(1, 1),
 CJeu::POS_ITEMS_DEFAUT = CPosition(5, 5),
 CJeu::POS_OBJECTIF_DEFAUT = CPosition(10, 10);
 
-const char CJeu::ESPACE_VIDE = ' ';
+const char ESPACE_VIDE = ' ';
 
 bool CJeu::Gagne()
 {

@@ -11,11 +11,21 @@ CJeu::POS_PERSO_DEFAUT = CPosition(1, 1),
 CJeu::POS_ITEMS_DEFAUT = CPosition(5, 5),
 CJeu::POS_OBJECTIF_DEFAUT = CPosition(10, 10);
 
-const char ESPACE_VIDE = ' ';
+const char CJeu::ESPACE_VIDE = ' ';
+
+bool CJeu::Gagne()
+{
+	return perso_.GetPosition() == objectif_;
+}
+
+bool CJeu::Perd()
+{
+	return perso_.EstMort();
+}
 
 bool CJeu::Fini()
 {
-	return perso_.GetPosition() == objectif_;
+	return Perd() || Gagne();
 }
 
 void CJeu::AfficherEtat(ostream & os) const

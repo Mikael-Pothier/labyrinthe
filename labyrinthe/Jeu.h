@@ -15,6 +15,9 @@ class CJeu
 		POS_PERSO_DEFAUT, POS_ITEMS_DEFAUT, POS_OBJECTIF_DEFAUT;
 	static const char
 		ESPACE_VIDE;
+
+	bool Gagne();
+	bool Perd();
 public:
 	CJeu() throw() : perso_(POS_PERSO_DEFAUT)
 	{

@@ -79,18 +79,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Commande.h" />
+    <ClInclude Include="Espace.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="Jeu.h" />
     <ClInclude Include="LifeUpgrade.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Orientation.h" />
+    <ClInclude Include="Personnage.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="TorcheUpgrade.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Commande.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="Jeu.cpp" />
     <ClCompile Include="LifeUpgrade.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Orientation.cpp" />
+    <ClCompile Include="Personnage.cpp" />
     <ClCompile Include="TorcheUpgrade.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

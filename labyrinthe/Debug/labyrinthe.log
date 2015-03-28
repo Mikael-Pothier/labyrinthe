@@ -1,25 +1,23 @@
-﻿Build started 2015-03-21 14:01:16.
-     1>Project "C:\Users\mike\Documents\GitHub\labyrinthe\labyrinthe\labyrinthe.vcxproj" on node 2 (Rebuild target(s)).
-       Project file contains ToolsVersion="14.0". This toolset may be unknown or missing, in which case you may be able to resolve this by installing the appropriate version of MSBuild, or the build may have been forced to a particular ToolsVersion for policy reasons. Treating the project as if it had ToolsVersion="4.0". For more information, please see http://go.microsoft.com/fwlink/?LinkId=291333.
-     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.Cpp.Platform.targets(44,5): error MSB8020: The builds tools for v140 (Platform Toolset = 'v140') cannot be found. To build using the v140 build tools, either click the Project menu or right-click the solution, and then select "Update VC++ Projects...". Install v140 to build using the v140 build tools.
-     1>Done Building Project "C:\Users\mike\Documents\GitHub\labyrinthe\labyrinthe\labyrinthe.vcxproj" (Rebuild target(s)) -- FAILED.
-Build started 2015-03-21 12:11:02.
-     1>Project "C:\Users\mike\Documents\GitHub\labyrinthe\labyrinthe\labyrinthe.vcxproj" on node 2 (Build target(s)).
+﻿Build started 28/03/2015 2:01:08 PM.
+     1>Project "C:\Users\Charles\Source\Repos\labyrinthe\labyrinthe\labyrinthe.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Item.cpp
-         Item.cpp
-     1>c:\users\mike\documents\github\labyrinthe\labyrinthe\item.cpp(9): error C2146: syntax error : missing ';' before identifier 'getposItem'
-     1>c:\users\mike\documents\github\labyrinthe\labyrinthe\item.cpp(9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\mike\documents\github\labyrinthe\labyrinthe\item.cpp(10): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\mike\documents\github\labyrinthe\labyrinthe\item.cpp(12): warning C4183: 'getposItem': missing return type; assumed to be a member function returning 'int'
-     1>c:\users\mike\documents\github\labyrinthe\labyrinthe\item.cpp(16): error C2059: syntax error : 'private'
-     1>c:\users\mike\documents\github\labyrinthe\labyrinthe\item.cpp(17): error C2065: 'CPosition' : undeclared identifier
-     1>c:\users\mike\documents\github\labyrinthe\labyrinthe\item.cpp(17): error C2182: '<alignment member>' : illegal use of type 'void'
-     1>c:\users\mike\documents\github\labyrinthe\labyrinthe\item.cpp(17): error C2146: syntax error : missing ';' before identifier 'positem_'
-     1>c:\users\mike\documents\github\labyrinthe\labyrinthe\item.cpp(17): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\mike\documents\github\labyrinthe\labyrinthe\item.cpp(11): error C2065: 'positem_' : undeclared identifier
-     1>Done Building Project "C:\Users\mike\Documents\GitHub\labyrinthe\labyrinthe\labyrinthe.vcxproj" (Build target(s)) -- FAILED.
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Jeu.cpp
+         Jeu.cpp
+     1>c:\users\charles\source\repos\labyrinthe\labyrinthe\personnage.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\charles\source\repos\labyrinthe\labyrinthe\personnage.h(3): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Charles\Source\Repos\labyrinthe\Debug\labyrinthe.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\Charles\Source\Repos\labyrinthe\Debug\labyrinthe.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Charles\Source\Repos\labyrinthe\Debug\labyrinthe.lib" /MACHINE:X86 Debug\Commande.obj
+         Debug\Item.obj
+         Debug\Jeu.obj
+         Debug\LifeUpgrade.obj
+         Debug\main.obj
+         Debug\Menu.obj
+         Debug\Orientation.obj
+         Debug\Personnage.obj
+         Debug\TorcheUpgrade.obj
+         labyrinthe.vcxproj -> C:\Users\Charles\Source\Repos\labyrinthe\Debug\labyrinthe.exe
+     1>Done Building Project "C:\Users\Charles\Source\Repos\labyrinthe\labyrinthe\labyrinthe.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:01.25
+Time Elapsed 00:00:03.28

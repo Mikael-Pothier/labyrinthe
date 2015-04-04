@@ -30,8 +30,3 @@ unsigned short CLifeUpgrade::getNbPas()
 {
 	return nb_pas_;
 }
-
-void CLifeUpgrade::UseItem(CPersonnage &perso)
-{
-	perso.SetNbPas(perso.GetNbPas() + nb_pas_);
-}

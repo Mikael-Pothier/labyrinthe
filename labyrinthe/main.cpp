@@ -18,5 +18,10 @@ int main()
 		jeu.AfficherEtat(cout);
 		CMenu::Afficher(cout);
 	}
+	if (jeu.PartieGagne())
+		cout << "Vous avez atteint l'objectif!";
+	else
+		cout << "Vous etes mort de faim!";
+	system("pause");
 	return 0;
 }

@@ -10,7 +10,7 @@ int main()
 	jeu.AfficherEtat(cout);
 	CMenu::Afficher(cout);
 	CCommande c;
-
+	system("color 0A");
 	while (!jeu.Fini() && 
 		(c = CMenu::LireCommande(cin), c != CMenu::QUITTER))
 	{

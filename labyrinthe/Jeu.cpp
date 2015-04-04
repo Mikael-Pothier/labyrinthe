@@ -14,13 +14,12 @@ CJeu::POS_OBJECTIF_DEFAUT = CPosition(10, 10);
 const char CJeu::VIDE = ' ';
 const string CJeu::ESPACE_JEU_DEFAUT = "Map.txt";
 
-CJeu::CJeu() throw() : perso_(POS_PERSO_DEFAUT), 
+CJeu::CJeu() throw() : perso_(POS_PERSO_DEFAUT),
 					   espace_jeu_(ESPACE_JEU_DEFAUT),
-					   objectif_(POS_OBJECTIF_DEFAUT)
+					   objectif_(CEspace::EtablirPosition(CEspace::FIN))
 {
 	CEspace::CreerEspace(espace_jeu_);
 	perso_.SetPosition(CEspace::EtablirPosition(CEspace::DEPART));
-	objectif_ = CEspace::EtablirPosition(CEspace::FIN);
 	CEspace::EtablirVisibles(perso_.GetPosition(), perso_.GetVision());
 }
 
@@ -50,7 +49,7 @@ void CJeu::AfficherEtat(ostream & os) const
 
 			if (pos == perso_.GetPosition())
 				os << perso_;
-			if (CEspace::EstVisible(pos))		
+			if (CEspace::EstVisible(pos))
 				CEspace::Afficher(os, pos);
 			else
 				os << VIDE;

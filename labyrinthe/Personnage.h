@@ -17,7 +17,7 @@ public:
 	short GetNbPas();
 
 	void SetVision(unsigned short vision);
-	short GetVision();
+	short GetVision() const;
 
 	void SetVitesse(const unsigned short vitesse);
 	unsigned short GetVitesse() const;
@@ -36,7 +36,7 @@ public:
 private:
 
 	static const unsigned short NB_PAS_DEFAUT = 50;
-	static const unsigned short VISION_DEFAUT = 3;
+	static const unsigned short VISION_DEFAUT = 7;
 	static const unsigned short VITESSE_DEFAUT = 2;
 
 	unsigned short nb_pas_;

@@ -40,7 +40,7 @@ void CPersonnage::SetNbPas(unsigned short pas)
 	nb_pas_ = pas;
 }
 
-short CPersonnage::GetVision()
+short CPersonnage::GetVision() const
 {
 	return vision_;
 }
@@ -55,7 +55,7 @@ Orientation CPersonnage::GetDirection() const
 	return direction_;
 }
 
-void CPersonnage::SetDirection(Orientation ori)
+void CPersonnage::SetDirection(const Orientation ori)
 {
 	direction_ = ori;
 }

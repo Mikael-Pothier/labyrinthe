@@ -14,7 +14,7 @@ void CMenu::Afficher(ostream& os)
 	   << "Gauche: "  << GAUCHE  << "; "		 
 	   << "Droite: "  << DROITE  << "; "
 	   << "Reculer: " << RECULER << "; "
-	   << "Quitter: " << QUITTER << "\n";
+	   << "Quitter: " << QUITTER << '\n';
 }
 
 CCommande CMenu::LireCommande(istream& is)

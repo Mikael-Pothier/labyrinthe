@@ -11,8 +11,10 @@ public:
 
 	unsigned short getNbPas();
 
+	static const short NB_PAS_DEFAUT = 100;
+	static const char SYMBOLE_DEFAUT = '$';
+
 private:
 	unsigned  short nb_pas_;
-	const short NB_PAS_DEFAUT = 10;
 
 };

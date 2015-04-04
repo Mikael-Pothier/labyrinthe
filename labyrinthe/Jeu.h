@@ -1,9 +1,11 @@
 #pragma once
 #include "Personnage.h"
-#include "Item.h"
+#include "TorcheUpgrade.h"
+#include "LifeUpgrade.h"
 #include <iosfwd>
 #include <vector>
 #include <string>
+
 using std::ostream;
 using std::vector;
 using std::string;
@@ -11,6 +13,8 @@ using std::string;
 class CCommande;
 class CJeu
 {
+	const int NBTORCH_DEFAUT = 5;
+	const int NBLIFE_DEFAUT = 5;
 	CPersonnage perso_;
 	vector<CItem> items_;
 	CPosition objectif_;
@@ -24,9 +28,13 @@ class CJeu
 
 	bool Gagne();
 	bool Perd();
+	bool IsWalkable(Orientation direction);
+	void FillTorchRandom(int nbTorch);
+	void FillLifeRandom(int nbLife);
 public:
 	CJeu() throw();
 	bool Fini();
 	void AfficherEtat(ostream &) const;
 	void Executer(const CCommande &);
+	void PlaceItem(int nbTorch, int nbLife);
 };

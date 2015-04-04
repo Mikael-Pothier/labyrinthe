@@ -14,9 +14,13 @@ class CEspace
 {
 	static vector<vector<char>> Map_;
 	static vector<CPosition> Visibles_;
+	static vector<CPosition> Libre_;
 	static CPosition Debut_,
 					 Fin_;
 public:
+
+	class MapPleine {};
+
 	enum 
 	{
 		X_MIN = 0, Y_MIN = 0,
@@ -34,10 +38,18 @@ public:
 	}
 	static bool EstAccessible(const CPosition &p)
 	{
-		return  Map_[p.GetY()][p.GetX()] != MUR_HORIZ &&
+		if (p.GetX() >= 0 && p.GetY() >= 0)
+		{
+			return  Map_[p.GetY()][p.GetX()] != MUR_HORIZ &&
 				Map_[p.GetY()][p.GetX()] != MUR_VERTI &&
 				EstValide(p);
+		}
+		return false;
 	}
+
+	static CPosition TakeSpace();
+
+	static void AddSpace(CPosition newPos);
 
 	static void CreerEspace(const string &);
 
@@ -87,4 +99,5 @@ public:
 		}
 		return CPosition(0,0);
 	}
+	static void PlaceInMap(CPosition pos, char symbol);
 };

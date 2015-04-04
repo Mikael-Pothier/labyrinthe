@@ -19,6 +19,7 @@ CJeu::CJeu() throw() : perso_(POS_PERSO_DEFAUT),
 					   objectif_(POS_OBJECTIF_DEFAUT)
 {
 	CEspace::CreerEspace(espace_jeu_);
+	PlaceItem(NBTORCH_DEFAUT,NBLIFE_DEFAUT);
 	perso_.SetPosition(CEspace::EtablirPosition(CEspace::DEPART));
 	objectif_ = CEspace::EtablirPosition(CEspace::FIN);
 	CEspace::EtablirVisibles(perso_.GetPosition(), perso_.GetVision());
@@ -50,10 +51,10 @@ void CJeu::AfficherEtat(ostream & os) const
 
 			if (pos == perso_.GetPosition())
 				os << perso_;
-			if (CEspace::EstVisible(pos))		
+			//if (CEspace::EstVisible(pos))		
 				CEspace::Afficher(os, pos);
-			else
-				os << VIDE;
+			//else
+			//	os << VIDE;
 		}
 		os << '\n';
 	}
@@ -63,8 +64,11 @@ void CJeu::Executer(const CCommande & c)
 {
 	if (c == CMenu::AVANCER)
 	{
-		perso_.Avancer();
-		CEspace::EtablirVisibles(perso_.GetPosition(), perso_.GetVision());
+		if (IsWalkable(perso_.GetDirection()))
+		{
+			perso_.Avancer();
+			CEspace::EtablirVisibles(perso_.GetPosition(), perso_.GetVision());
+		}
 	}
 	else if (c == CMenu::DROITE)
 	{
@@ -76,7 +80,67 @@ void CJeu::Executer(const CCommande & c)
 	}
 	else if (c == CMenu::RECULER)
 	{
+		if(IsWalkable(perso_.GetDirectionInverse()))
 		perso_.Reculer();
 		CEspace::EtablirVisibles(perso_.GetPosition(), perso_.GetVision());
+	}
+}
+
+bool CJeu::IsWalkable(Orientation direction)
+{
+	bool walkable = false;
+	switch (direction)
+	{
+	case Nord:
+		walkable = CEspace::EstAccessible(perso_.GetPosition().VoisineNord());
+		break;
+	case Sud:
+		walkable = CEspace::EstAccessible(perso_.GetPosition().VoisineSud());
+		break;
+	case Est:
+		walkable = CEspace::EstAccessible(perso_.GetPosition().VoisineEst());
+		break;
+	case Ouest:
+		walkable = CEspace::EstAccessible(perso_.GetPosition().VoisineOuest());
+		break;
+	}
+	return walkable;
+}
+
+void CJeu::FillTorchRandom(int nbTorch)
+{
+	try
+	{
+		for (int i = 0; i < nbTorch; ++i)
+		{
+			CPosition pos = CEspace::TakeSpace();
+			items_.push_back(CTorcheUpgrade(pos.GetX(), pos.GetY(), CTorcheUpgrade::SYMBOLE_DEFAUT, CTorcheUpgrade::PORTEE_DEFAUT));
+		}
+	}
+	catch (CEspace::MapPleine) 
+	{}
+}
+
+void CJeu::FillLifeRandom(int nbLife)
+{
+	try
+	{
+		for (int i = 0; i < nbLife; ++i)
+		{
+			CPosition pos = CEspace::TakeSpace();
+			items_.push_back(CLifeUpgrade(pos.GetX(), pos.GetY(), CLifeUpgrade::SYMBOLE_DEFAUT, CLifeUpgrade::NB_PAS_DEFAUT));
+		}
+	}
+	catch (CEspace::MapPleine)
+	{}
+}
+
+void CJeu::PlaceItem(int nbTorch, int nbLife)
+{
+	FillTorchRandom(nbTorch);
+	FillLifeRandom(nbLife);
+	for (int i = 0; i < items_.size(); ++i)
+	{
+		CEspace::PlaceInMap(items_[i].GetPosItem(), items_[i].GetSymbole());
 	}
 }

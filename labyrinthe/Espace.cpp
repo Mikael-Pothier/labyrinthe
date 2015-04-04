@@ -1,7 +1,10 @@
 #include "Espace.h"
+#include <stdlib.h>
+#include <time.h> 
 
 vector<vector<char>> CEspace::Map_ = {};
 vector<CPosition> CEspace::Visibles_ = {};
+vector<CPosition> CEspace::Libre_ = {};
 
 void CEspace::CreerEspace(const string &fileName)
 {
@@ -21,6 +24,8 @@ void CEspace::CreerEspace(const string &fileName)
 		else
 		{
 			Map_[i].push_back(c);
+			if (c == ' ')
+				Libre_.push_back(CPosition(Map_[i].size(), i));
 		}
 	}
 	ifs.close();
@@ -64,6 +69,34 @@ const CPosition CEspace::PositionDebut()
 const CPosition CEspace::PositionFin()
 {
 	return CPosition();
+}
+
+CPosition CEspace::TakeSpace()
+{
+	srand(time(NULL));
+
+	if (Libre_.size() == 0)
+	{
+		throw MapPleine();
+	}
+
+	int posTable = rand() % Libre_.size();
+
+	CPosition posSpace(Libre_[posTable].GetX(), Libre_[posTable].GetY());
+
+	Libre_.erase(Libre_.begin() + posTable, Libre_.begin() + posTable + 1);
+
+	return posSpace;
+}
+
+void CEspace::AddSpace(CPosition pos)
+{
+	Libre_.push_back(pos);
+}
+
+void CEspace::PlaceInMap(CPosition pos, char symbol)
+{
+	Map_[pos.GetY()][pos.GetX()]= symbol;
 }
 
 //CPosition CJeu::TrouverPosDepart()

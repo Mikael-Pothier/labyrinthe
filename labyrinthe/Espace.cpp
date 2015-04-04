@@ -1,6 +1,6 @@
 #include "Espace.h"
-#include <stdlib.h>
-#include <time.h> 
+#include <cstdlib>
+#include <ctime> 
 
 vector<vector<char>> CEspace::Map_ = {};
 vector<CPosition> CEspace::Visibles_ = {};
@@ -8,6 +8,8 @@ vector<CPosition> CEspace::Libre_ = {};
 
 void CEspace::CreerEspace(const string &fileName)
 {
+	//trouver meilleur place
+	std::srand(std::time(0));
 	ifstream ifs;
 	ifs.open(fileName);
 	char c;
@@ -25,7 +27,7 @@ void CEspace::CreerEspace(const string &fileName)
 		{
 			Map_[i].push_back(c);
 			if (c == ' ')
-				Libre_.push_back(CPosition(Map_[i].size(), i));
+				Libre_.push_back(CPosition(Map_[i].size()-1, i));
 		}
 	}
 	ifs.close();
@@ -73,7 +75,6 @@ const CPosition CEspace::PositionFin()
 
 CPosition CEspace::TakeSpace()
 {
-	srand(time(NULL));
 
 	if (Libre_.size() == 0)
 	{

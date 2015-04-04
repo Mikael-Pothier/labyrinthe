@@ -67,6 +67,7 @@ void CJeu::Executer(const CCommande & c)
 		if (IsWalkable(perso_.GetDirection()))
 		{
 			perso_.Avancer();
+
 			CEspace::EtablirVisibles(perso_.GetPosition(), perso_.GetVision());
 		}
 	}

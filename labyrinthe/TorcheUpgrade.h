@@ -10,8 +10,9 @@ public:
 	CTorcheUpgrade(short x, short y, char symbole, unsigned short duree);
 
 	unsigned short getPortee();
+	static const char SYMBOLE_DEFAUT = '#';
+	static const short PORTEE_DEFAUT = 3;
 
 private:
 	unsigned  short portee_;
-	const short PORTEE_DEFAUT = 3;
 };

@@ -55,6 +55,27 @@ Orientation CPersonnage::GetDirection() const
 	return direction_;
 }
 
+Orientation CPersonnage::GetDirectionInverse() const
+{
+	Orientation Inverse;
+	switch (GetDirection())
+	{
+	case Nord:
+		Inverse = Sud;
+		break;
+	case Sud:
+		Inverse = Nord;
+		break;
+	case Est:
+		Inverse = Ouest;
+		break;
+	case Ouest:
+		Inverse = Est;
+		break;
+	}
+	return Inverse;
+}
+
 void CPersonnage::SetDirection(const Orientation ori)
 {
 	direction_ = ori;
@@ -87,7 +108,7 @@ void CPersonnage::Avancer()
 
 void CPersonnage::Reculer()
 {
-	Marcher( -( GetVitesse() / 2 ) );
+	Marcher( -GetVitesse()  );
 }
 
 void CPersonnage::Marcher(const short vitesse)

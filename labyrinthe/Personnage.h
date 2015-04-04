@@ -23,6 +23,7 @@ public:
 	unsigned short GetVitesse() const;
 
 	Orientation GetDirection() const;
+	Orientation GetDirectionInverse() const;
 	void SetDirection(const Orientation);
 	CPosition GetPosition() const;
 	void SetPosition(CPosition pos);
@@ -37,7 +38,7 @@ private:
 
 	static const unsigned short NB_PAS_DEFAUT = 50;
 	static const unsigned short VISION_DEFAUT = 7;
-	static const unsigned short VITESSE_DEFAUT = 2;
+	static const unsigned short VITESSE_DEFAUT = 1;
 
 	unsigned short nb_pas_;
 	unsigned short vision_;

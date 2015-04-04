@@ -16,12 +16,11 @@ const string CJeu::ESPACE_JEU_DEFAUT = "Map.txt";
 
 CJeu::CJeu() throw() : perso_(POS_PERSO_DEFAUT), 
 					   espace_jeu_(ESPACE_JEU_DEFAUT),
-					   objectif_(POS_OBJECTIF_DEFAUT)
+					   objectif_(CEspace::EtablirPosition(CEspace::FIN))
 {
 	CEspace::CreerEspace(espace_jeu_);
 	PlaceItem(NBTORCH_DEFAUT,NBLIFE_DEFAUT);
 	perso_.SetPosition(CEspace::EtablirPosition(CEspace::DEPART));
-	objectif_ = CEspace::EtablirPosition(CEspace::FIN);
 	CEspace::EtablirVisibles(perso_.GetPosition(), perso_.GetVision());
 }
 

@@ -5,6 +5,8 @@
 #include <iosfwd>
 #include <string>
 #include <vector>
+#include <algorithm>
+
 using std::vector;
 using std::string;
 using std::ifstream;
@@ -26,16 +28,19 @@ public:
 		X_MIN = 0, Y_MIN = 0,
 		X_MAX = 25, Y_MAX = 10
 	};
+
 	enum
 	{
 		DEPART = 'b', FIN = 'e', 
 		MUR_VERTI = '|', MUR_HORIZ = '-'
 	};
+
 	static bool EstValide(const CPosition &p) throw()
 	{
 		return X_MIN <= p.GetX() && p.GetX() < Max_X() &&
 			   Y_MIN <= p.GetY() && p.GetY() < Max_Y();
 	}
+
 	static bool EstAccessible(const CPosition &p)
 	{
 		if (p.GetX() >= 0 && p.GetY() >= 0)
@@ -64,26 +69,18 @@ public:
 
 	static bool EstVisible(const CPosition &p)
 	{
-		if (Map_[p.GetY()][p.GetX()] != DEPART &&
-			Map_[p.GetY()][p.GetX()] != FIN)
-		{
-			for (short i = 0; i < GetZoneVision().size(); ++i)
-			{
-				if (GetZoneVision()[i].GetX() == p.GetX() &&
-					GetZoneVision()[i].GetY() == p.GetY())
-					return true;
-			}
-		}
-		return false;
+		vector<CPosition> v = GetZoneVision();
+		auto it = std::find(v.begin(), v.end(), p);
+		return it != v.end() &&
+			   p != EtablirPosition(DEPART) &&
+			   p != EtablirPosition(FIN);
 	}
 
 	static void Afficher(ostream &os, const CPosition &pos);
 
 	static short Max_X() { return Map_[Y_MIN].size(); } const
-	static short Max_Y() { return Map_.size(); } const
 
-	static const CPosition PositionDebut();
-	static const CPosition PositionFin();
+	static short Max_Y() { return Map_.size(); } const
 
 	static CPosition EtablirPosition(const char c)
 	{

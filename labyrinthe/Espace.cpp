@@ -43,18 +43,13 @@ void CEspace::EtablirVisibles(const CPosition & centre, const short & diam)
 {
 	Visibles_.clear();
 	short rayon = (diam - 1) / 2;
-	AjouterVisible(CPosition(centre));
-	for (short i = 1; i <= rayon; ++i)
+	CPosition depart(centre.GetX() - rayon, centre.GetY() - rayon);
+	for (short i = 0; i < diam; ++i)
 	{
-		AjouterVisible(CPosition(centre.GetX() - i, centre.GetY() - i));
-		AjouterVisible(CPosition(centre.GetX() - i, centre.GetY() - i));
-		AjouterVisible(CPosition(centre.GetX() - i, centre.GetY()));
-		AjouterVisible(CPosition(centre.GetX() - i, centre.GetY() + i));
-		AjouterVisible(CPosition(centre.GetX(), centre.GetY() - i));
-		AjouterVisible(CPosition(centre.GetX(), centre.GetY() + i));
-		AjouterVisible(CPosition(centre.GetX() + i, centre.GetY() - i));
-		AjouterVisible(CPosition(centre.GetX() - i, centre.GetY()));
-		AjouterVisible(CPosition(centre.GetX() + i, centre.GetY() + i));
+		for (short j = 0; j < diam; ++j)
+		{
+			AjouterVisible(CPosition(depart.GetX() + j, depart.GetY() + i));
+		}
 	}
 }
 

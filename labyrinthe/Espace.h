@@ -97,4 +97,5 @@ public:
 		return CPosition(0,0);
 	}
 	static void PlaceInMap(CPosition pos, char symbol);
+	static void RemoveFromMap(CPosition);
 };

@@ -31,6 +31,8 @@ class CJeu
 	bool IsWalkable(Orientation direction);
 	void FillTorchRandom(int nbTorch);
 	void FillLifeRandom(int nbLife);
+	void TakeItem();
+	int FindPosItem(CPosition pos);
 public:
 	CJeu() throw();
 	bool Fini();

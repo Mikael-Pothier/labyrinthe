@@ -1,11 +1,11 @@
 #include "LifeUpgrade.h";
 
-CLifeUpgrade::CLifeUpgrade(CPosition pos, char Symbole,unsigned short duree) : CItem(pos,Symbole,duree)
+CLifeUpgrade::CLifeUpgrade(CPosition pos, char Symbole) : CItem(pos,Symbole)
 {
 	nb_pas_= NB_PAS_DEFAUT;
 }
 
-CLifeUpgrade::CLifeUpgrade(CPosition pos, char Symbole,unsigned short duree,unsigned short augmentation) : CItem(pos,Symbole,duree)
+CLifeUpgrade::CLifeUpgrade(CPosition pos, char Symbole,unsigned short augmentation) : CItem(pos,Symbole)
 {
 	if(augmentation >0)
 		nb_pas_=augmentation;
@@ -13,7 +13,7 @@ CLifeUpgrade::CLifeUpgrade(CPosition pos, char Symbole,unsigned short duree,unsi
 		nb_pas_= NB_PAS_DEFAUT;
 }
 
-CLifeUpgrade::CLifeUpgrade(short x,short y, char Symbole,unsigned short duree,unsigned short augmentation) : CItem(x,y,Symbole,duree) 
+CLifeUpgrade::CLifeUpgrade(short x,short y, char Symbole,unsigned short augmentation) : CItem(x,y,Symbole) 
 {
 	if(augmentation >0)
 		nb_pas_=augmentation;
@@ -21,7 +21,7 @@ CLifeUpgrade::CLifeUpgrade(short x,short y, char Symbole,unsigned short duree,un
 		nb_pas_= NB_PAS_DEFAUT;
 }
 
-CLifeUpgrade::CLifeUpgrade(short x,short y, char Symbole,unsigned short duree): CItem(x,y,Symbole,duree)
+CLifeUpgrade::CLifeUpgrade(short x,short y, char Symbole): CItem(x,y,Symbole)
 {
 	nb_pas_= NB_PAS_DEFAUT;
 }
@@ -29,4 +29,9 @@ CLifeUpgrade::CLifeUpgrade(short x,short y, char Symbole,unsigned short duree): 
 unsigned short CLifeUpgrade::getNbPas()
 {
 	return nb_pas_;
+}
+
+void CLifeUpgrade::UseItem(CPersonnage &perso)
+{
+	perso.SetNbPas(perso.GetNbPas() + nb_pas_);
 }

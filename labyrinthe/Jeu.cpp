@@ -66,7 +66,7 @@ void CJeu::Executer(const CCommande & c)
 		if (IsWalkable(perso_.GetDirection()))
 		{
 			perso_.Avancer();
-
+			TakeItem();
 			CEspace::EtablirVisibles(perso_.GetPosition(), perso_.GetVision());
 		}
 	}
@@ -83,6 +83,7 @@ void CJeu::Executer(const CCommande & c)
 		if (IsWalkable(perso_.GetDirectionInverse()))
 		{
 			perso_.Reculer();
+			TakeItem();
 			CEspace::EtablirVisibles(perso_.GetPosition(), perso_.GetVision());
 		}
 	}
@@ -144,5 +145,27 @@ void CJeu::PlaceItem(int nbTorch, int nbLife)
 	for (int i = 0; i < items_.size(); ++i)
 	{
 		CEspace::PlaceInMap(items_[i].GetPosItem(), items_[i].GetSymbole());
+	}
+}
+
+int CJeu::FindPosItem(CPosition pos)
+{
+	for (int i = 0; i < items_.size(); ++i)
+	{
+		if (pos == items_[i].GetPosItem())
+			return i;
+	}
+	return -1;
+}
+
+void CJeu::TakeItem()
+{
+	int posItem = FindPosItem(perso_.GetPosition());
+
+	if (posItem != -1)
+	{
+		items_[posItem].UseItem(perso_);
+		CEspace::RemoveFromMap(items_[posItem].GetPosItem());
+		items_.erase(items_.begin() + posItem, items_.begin() + posItem + 1);
 	}
 }

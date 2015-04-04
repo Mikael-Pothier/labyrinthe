@@ -1,18 +1,16 @@
 #include "Item.h";
 
-CItem::CItem(CPosition pos, char symbole, unsigned short duree)
+CItem::CItem(CPosition pos, char symbole)
 {
 	SetPosItem(pos);
-	duree_ = duree;
 	symbole_ = symbole;
 	Activate();
 }
 
-CItem::CItem(short x, short y, char symbole, unsigned short duree)
+CItem::CItem(short x, short y, char symbole)
 {
 	CPosition pos(x, y);
 	SetPosItem(pos);
-	duree_ = duree;
 	symbole_ = symbole;
 	Activate();
 }
@@ -40,11 +38,6 @@ void CItem::Activate()
 void CItem::Disable()
 {
 	is_active_ = false;
-}
-
-short CItem::GetDuree()
-{
-	return duree_;
 }
 
 char CItem::GetSymbole() const

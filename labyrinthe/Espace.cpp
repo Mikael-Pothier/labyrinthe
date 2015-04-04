@@ -84,3 +84,8 @@ void CEspace::PlaceInMap(CPosition pos, char symbol)
 {
 	Map_[pos.GetY()][pos.GetX()]= symbol;
 }
+
+void CEspace::RemoveFromMap(CPosition pos)
+{
+	Map_[pos.GetY()][pos.GetX()] = ' ';
+}

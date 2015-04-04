@@ -58,16 +58,6 @@ void CEspace::Afficher(ostream &os, const CPosition &pos)
 	os << Map_[pos.GetY()][pos.GetX()];
 }
 
-const CPosition CEspace::PositionDebut()
-{
-	return CPosition();
-}
-
-const CPosition CEspace::PositionFin()
-{
-	return CPosition();
-}
-
 CPosition CEspace::TakeSpace()
 {
 
@@ -94,18 +84,3 @@ void CEspace::PlaceInMap(CPosition pos, char symbol)
 {
 	Map_[pos.GetY()][pos.GetX()]= symbol;
 }
-
-//CPosition CJeu::TrouverPosDepart()
-//{
-//	for (short i = 0; i < Map_.size(); ++i)
-//	{
-//		for (short j = 0; j < Map_[i].size(); ++j)
-//		{
-//			if (Map_[i][j] == CEspace::DEPART)
-//			{
-//				return CPosition(i, j);
-//			}
-//		}
-//	}
-//	return CPosition(0, 0);
-//}

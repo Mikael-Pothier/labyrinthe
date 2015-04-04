@@ -50,10 +50,10 @@ void CJeu::AfficherEtat(ostream & os) const
 
 			if (pos == perso_.GetPosition())
 				os << perso_;
-			//if (CEspace::EstVisible(pos))		
+			else if (CEspace::EstVisible(pos))		
 				CEspace::Afficher(os, pos);
-			//else
-			//	os << VIDE;
+			else
+				os << VIDE;
 		}
 		os << '\n';
 	}
@@ -80,9 +80,11 @@ void CJeu::Executer(const CCommande & c)
 	}
 	else if (c == CMenu::RECULER)
 	{
-		if(IsWalkable(perso_.GetDirectionInverse()))
-		perso_.Reculer();
-		CEspace::EtablirVisibles(perso_.GetPosition(), perso_.GetVision());
+		if (IsWalkable(perso_.GetDirectionInverse()))
+		{
+			perso_.Reculer();
+			CEspace::EtablirVisibles(perso_.GetPosition(), perso_.GetVision());
+		}
 	}
 }
 

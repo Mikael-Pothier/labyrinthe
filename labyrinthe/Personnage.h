@@ -14,7 +14,7 @@ public:
 				unsigned short visionDepart = VISION_DEFAUT, unsigned short vitesse = VITESSE_DEFAUT);
 
 	void SetNbPas(unsigned short pas);
-	short GetNbPas();
+	short GetNbPas() const;
 
 	void SetVision(unsigned short vision);
 	short GetVision() const;

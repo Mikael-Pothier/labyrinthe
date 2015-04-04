@@ -19,6 +19,7 @@ class CJeu
 	vector<CItem> items_;
 	CPosition objectif_;
 	string espace_jeu_;
+	bool partie_gagne = false;
 
 	static const CPosition
 		POS_PERSO_DEFAUT, POS_ITEMS_DEFAUT, POS_OBJECTIF_DEFAUT;
@@ -34,6 +35,7 @@ class CJeu
 public:
 	CJeu() throw();
 	bool Fini();
+	bool PartieGagne() const { return partie_gagne; };
 	void AfficherEtat(ostream &) const;
 	void Executer(const CCommande &);
 	void PlaceItem(int nbTorch, int nbLife);

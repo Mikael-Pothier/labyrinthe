@@ -30,7 +30,7 @@ CPersonnage::CPersonnage(unsigned short x, unsigned short y,
 	SetVitesse(vitesse);
 }
 
-short CPersonnage::GetNbPas()
+short CPersonnage::GetNbPas() const
 {
 	return nb_pas_;
 }

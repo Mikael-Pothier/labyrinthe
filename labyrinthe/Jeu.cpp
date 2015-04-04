@@ -36,7 +36,12 @@ bool CJeu::Perd()
 
 bool CJeu::Fini()
 {
-	return Perd() || Gagne();
+	if (Gagne())
+		partie_gagne = true;
+	if(partie_gagne || Perd())
+		return true;
+
+	return false;
 }
 
 void CJeu::AfficherEtat(ostream & os) const
@@ -57,6 +62,10 @@ void CJeu::AfficherEtat(ostream & os) const
 		}
 		os << '\n';
 	}
+	os << "Pas restants: " << perso_.GetNbPas() << 
+		  " Vision actuelle: " << perso_.GetVision() << 
+		  " Torche(" << "): " << 
+		  " Nourriture(" << "): " <<'\n';
 }
 
 void CJeu::Executer(const CCommande & c)

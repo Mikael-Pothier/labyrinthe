@@ -64,8 +64,8 @@ void CJeu::AfficherEtat(ostream & os) const
 	}
 	os << "Pas restants: " << perso_.GetNbPas() << 
 		  " Vision actuelle: " << perso_.GetVision() << 
-		  " Torche(" << "): " << 
-		  " Nourriture(" << "): " <<'\n';
+		  " Torche(" << "): " << CTorcheUpgrade::GetSymbole() <<
+		  " Nourriture(" << "): " << CLifeUpgrade::GetSymbole() << '\n';
 }
 
 void CJeu::Executer(const CCommande & c)

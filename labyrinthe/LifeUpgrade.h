@@ -16,6 +16,8 @@ public:
 
 	void UseItem(CPersonnage &perso);
 
+	static char GetSymbole() { return SYMBOLE_DEFAUT; };
+
 private:
 	unsigned  short nb_pas_;
 

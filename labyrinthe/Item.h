@@ -21,6 +21,7 @@ public:
 	bool operator==(CItem const& a); 
 
 	virtual void UseItem(CPersonnage &perso) {};
+
 private:
 	CPosition pos_item_;
 	bool is_active_;

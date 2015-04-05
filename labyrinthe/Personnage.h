@@ -36,7 +36,7 @@ public:
 
 private:
 
-	static const unsigned short NB_PAS_DEFAUT = 100000;
+	static const unsigned short NB_PAS_DEFAUT = 1000;
 	static const unsigned short VISION_DEFAUT = 7;
 	static const unsigned short VITESSE_DEFAUT = 1;
 

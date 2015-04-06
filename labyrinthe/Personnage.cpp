@@ -96,6 +96,25 @@ unsigned short CPersonnage::GetVitesse() const
 	return vitesse_;
 }
 
+unsigned short CPersonnage::GetItem(char symbole)
+{
+	if (DureeItem_.find(symbole) != DureeItem_.end())
+	{
+		return DureeItem_[symbole];
+	}
+	return 0;
+}
+
+void CPersonnage::SetItem(char symbole, unsigned short nb)
+{
+	DureeItem_[symbole] = nb;
+}
+
+void CPersonnage::AjouterDuree(char symbole, unsigned short nb)
+{
+	DureeItem_[symbole] += nb;
+}
+
 void CPersonnage::SetVitesse(const unsigned short vitesse)
 {
 	vitesse_ = vitesse;
@@ -169,4 +188,20 @@ ostream & operator<<(ostream &os, const CPersonnage &p)
 void CPersonnage::SetPosition(CPosition pos)
 {
 	pos_personnage_ = pos;
+}
+
+void CPersonnage::ReduireAllItem()
+{
+	if (DureeItem_.find('#') != DureeItem_.end())
+	{
+		reduireItem('#');
+		if (DureeItem_['#'] == 0)
+			SetVision(VISION_DEFAUT);
+	}
+}
+
+void CPersonnage::reduireItem(char symbole)
+{
+	if(DureeItem_[symbole] >0)
+		--DureeItem_[symbole];
 }

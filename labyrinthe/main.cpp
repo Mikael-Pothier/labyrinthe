@@ -6,6 +6,7 @@
 using namespace std;
 int main()
 {
+	std::srand(std::time(0));
 	CJeu jeu;
 	jeu.AfficherEtat(cout);
 	CMenu::Afficher(cout);

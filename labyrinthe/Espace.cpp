@@ -8,8 +8,6 @@ vector<CPosition> CEspace::Libre_ = {};
 
 void CEspace::CreerEspace(const string &fileName)
 {
-	//trouver meilleur place
-	std::srand(std::time(0));
 	ifstream ifs;
 	ifs.open(fileName);
 	char c;

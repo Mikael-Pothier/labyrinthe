@@ -5,9 +5,12 @@
 
 class CItem
 {
-public:
+protected:
+
 	CItem(CPosition pos, char symbole);
 	CItem(short x, short y, char symbole);
+
+public:
 
 	CPosition GetPosItem() const;
 	void SetPosItem(CPosition pos);

@@ -78,6 +78,7 @@ void CJeu::Executer(const CCommande & c)
 		if (IsWalkable(perso_.GetDirection()))
 		{
 			perso_.Avancer();
+			perso_.ReduireAllItem();
 			TakeItem();
 			CEspace::EtablirVisibles(perso_.GetPosition(), perso_.GetVision());
 		}
@@ -95,6 +96,7 @@ void CJeu::Executer(const CCommande & c)
 		if (IsWalkable(perso_.GetDirectionInverse()))
 		{
 			perso_.Reculer();
+			perso_.ReduireAllItem();
 			TakeItem();
 			CEspace::EtablirVisibles(perso_.GetPosition(), perso_.GetVision());
 		}
@@ -129,8 +131,7 @@ void CJeu::FillTorchRandom(int nbTorch)
 		for (int i = 0; i < nbTorch; ++i)
 		{
 			CPosition pos = CEspace::TakeSpace();
-			unique_ptr<CTorcheUpgrade>p(new CTorcheUpgrade(pos.GetX(), pos.GetY(), 
-										CTorcheUpgrade::SYMBOLE_DEFAUT, CTorcheUpgrade::PORTEE_DEFAUT));
+			unique_ptr<CTorcheUpgrade>p(new CTorcheUpgrade(pos.GetX(), pos.GetY()));
 			items_.push_back(move(p));
 		}
 	}

@@ -3,29 +3,33 @@
 #include "Position.h"
 #include "Personnage.h"
 
+
 class CItem
 {
-public:
+protected:
+
+	CItem(CPosition pos, char symbole,unsigned short duree);
+	CItem(short x, short y, char symbole, unsigned short duree);
 	CItem(CPosition pos, char symbole);
 	CItem(short x, short y, char symbole);
+
+public:
 
 	CPosition GetPosItem() const;
 	void SetPosItem(CPosition pos);
 
-	bool GetIsActive() const;
-	void Activate();
-	void Disable();
-
 	char GetSymbole() const;
 	
+	unsigned short getduree() const;
+
 	bool operator==(CItem const& a); 
 
 	virtual void UseItem(CPersonnage &perso) {};
 
 private:
 	CPosition pos_item_;
-	bool is_active_;
 	char symbole_;
+	unsigned short duree_;
 };
 
 #include <iosfwd>

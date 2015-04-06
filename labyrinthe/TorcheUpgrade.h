@@ -11,8 +11,8 @@ public:
 
 	unsigned short getPortee();
 	static const char SYMBOLE_DEFAUT = '#';
-	static const short PORTEE_DEFAUT = 3;
-	static const int PORTEE_MAX = 9;
+	static const short PORTEE_DEFAUT = 2;
+	static const int PORTEE_MAX = 11;
 
 	void UseItem(CPersonnage &perso) override;
 

@@ -5,6 +5,7 @@
 
 #include<iostream>
 using std::ostream;
+using std::move;
 
 const CPosition
 CJeu::POS_PERSO_DEFAUT = CPosition(1, 1),
@@ -15,18 +16,13 @@ const char CJeu::VIDE = ' ';
 const string CJeu::ESPACE_JEU_DEFAUT = "Map.txt";
 
 CJeu::CJeu() throw() : perso_(POS_PERSO_DEFAUT), 
-					   espace_jeu_(ESPACE_JEU_DEFAUT),
-					   objectif_(CEspace::EtablirPosition(CEspace::FIN))
+					   espace_jeu_(ESPACE_JEU_DEFAUT)
 {
 	CEspace::CreerEspace(espace_jeu_);
 	PlaceItem(NBTORCH_DEFAUT,NBLIFE_DEFAUT);
 	perso_.SetPosition(CEspace::EtablirPosition(CEspace::DEPART));
 	CEspace::EtablirVisibles(perso_.GetPosition(), perso_.GetVision());
-}
-
-CJeu::~CJeu()
-{
-	//delete 
+	objectif_ = CEspace::EtablirPosition(CEspace::FIN);
 }
 
 bool CJeu::Gagne()
@@ -42,7 +38,7 @@ bool CJeu::Perd()
 bool CJeu::Fini()
 {	
 	partie_gagne = Gagne();
-	return partie_gagne || Perd;
+	return partie_gagne || Perd();
 }
 
 void CJeu::AfficherEtat(ostream & os) const
@@ -127,7 +123,9 @@ void CJeu::FillTorchRandom(int nbTorch)
 		for (int i = 0; i < nbTorch; ++i)
 		{
 			CPosition pos = CEspace::TakeSpace();
-			items_.push_back(CTorcheUpgrade(pos.GetX(), pos.GetY(), CTorcheUpgrade::SYMBOLE_DEFAUT, CTorcheUpgrade::PORTEE_DEFAUT));
+			unique_ptr<CTorcheUpgrade>p(new CTorcheUpgrade(pos.GetX(), pos.GetY(), 
+										CTorcheUpgrade::SYMBOLE_DEFAUT, CTorcheUpgrade::PORTEE_DEFAUT));
+			items_.push_back(move(p));
 		}
 	}
 	catch (CEspace::MapPleine) 
@@ -141,7 +139,9 @@ void CJeu::FillLifeRandom(int nbLife)
 		for (int i = 0; i < nbLife; ++i)
 		{
 			CPosition pos = CEspace::TakeSpace();
-			items_.push_back(CLifeUpgrade(pos.GetX(), pos.GetY(), CLifeUpgrade::SYMBOLE_DEFAUT, CLifeUpgrade::NB_PAS_DEFAUT));
+			unique_ptr<CLifeUpgrade> p(new CLifeUpgrade(pos.GetX(), pos.GetY(), 
+									   CLifeUpgrade::SYMBOLE_DEFAUT, CLifeUpgrade::NB_PAS_DEFAUT));
+			items_.push_back(move(p));
 		}
 	}
 	catch (CEspace::MapPleine)
@@ -154,7 +154,7 @@ void CJeu::PlaceItem(int nbTorch, int nbLife)
 	FillLifeRandom(nbLife);
 	for (int i = 0; i < items_.size(); ++i)
 	{
-		CEspace::PlaceInMap(items_[i].GetPosItem(), items_[i].GetSymbole());
+		CEspace::PlaceInMap(items_[i]->GetPosItem(), items_[i]->GetSymbole());
 	}
 }
 
@@ -162,7 +162,7 @@ int CJeu::FindPosItem(CPosition pos)
 {
 	for (int i = 0; i < items_.size(); ++i)
 	{
-		if (pos == items_[i].GetPosItem())
+		if (pos == items_[i]->GetPosItem())
 			return i;
 	}
 	return -1;
@@ -174,8 +174,8 @@ void CJeu::TakeItem()
 
 	if (posItem != -1)
 	{
-		items_[posItem].UseItem(perso_);
-		CEspace::RemoveFromMap(items_[posItem].GetPosItem());
+		items_[posItem]->UseItem(perso_);
+		CEspace::RemoveFromMap(items_[posItem]->GetPosItem());
 		items_.erase(items_.begin() + posItem, items_.begin() + posItem + 1);
 	}
 }

@@ -5,9 +5,11 @@
 #include <iosfwd>
 #include <vector>
 #include <string>
+#include <memory>
 using std::ostream;
 using std::vector;
 using std::string;
+using std::unique_ptr;
 
 class CCommande;
 class CJeu
@@ -15,7 +17,7 @@ class CJeu
 	const int NBTORCH_DEFAUT = 5;
 	const int NBLIFE_DEFAUT = 5;
 	CPersonnage perso_;
-	vector<CItem> items_;
+	vector<unique_ptr<CItem>> items_;
 	CPosition objectif_;
 	string espace_jeu_;
 	bool partie_gagne = false;
@@ -35,7 +37,6 @@ class CJeu
 	int FindPosItem(CPosition pos);
 public:
 	CJeu() throw();
-	~CJeu();
 	bool Fini();
 	bool PartieGagne() const { return partie_gagne; };
 	void AfficherEtat(ostream &) const;

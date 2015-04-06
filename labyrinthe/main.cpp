@@ -10,7 +10,7 @@ int main()
 	jeu.AfficherEtat(cout);
 	CMenu::Afficher(cout);
 	CCommande c;
-	system("color 0A");
+	system("color 0A"); //pour faire fancy
 	while (!jeu.Fini() && 
 		(c = CMenu::LireCommande(cin), c != CMenu::QUITTER))
 	{
@@ -18,10 +18,7 @@ int main()
 		jeu.AfficherEtat(cout);
 		CMenu::Afficher(cout);
 	}
-	if (jeu.PartieGagne())
-		cout << "Vous avez atteint l'objectif!";
-	else
-		cout << "Vous etes mort de faim!";
+	jeu.AfficherResultats(cout);
 	system("pause");
 	return 0;
 }

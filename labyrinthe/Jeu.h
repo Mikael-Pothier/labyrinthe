@@ -40,6 +40,7 @@ public:
 	bool Fini();
 	bool PartieGagne() const { return partie_gagne; };
 	void AfficherEtat(ostream &) const;
+	void AfficherResultats(ostream &) const;
 	void Executer(const CCommande &);
 	void PlaceItem(int nbTorch, int nbLife);
 };

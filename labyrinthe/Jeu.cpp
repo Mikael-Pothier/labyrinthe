@@ -65,6 +65,12 @@ void CJeu::AfficherEtat(ostream & os) const
 		  " Nourriture(" << "): " << CLifeUpgrade::GetSymbole() << '\n';
 }
 
+void CJeu::AfficherResultats(ostream & os) const
+{
+	string msg = PartieGagne() ? "Vous avez gagne!" : "Vous avez perdu...";
+	os << msg << '\n';
+}
+
 void CJeu::Executer(const CCommande & c)
 {
 	if (c == CMenu::AVANCER)

@@ -5,7 +5,6 @@
 #include <iosfwd>
 #include <vector>
 #include <string>
-
 using std::ostream;
 using std::vector;
 using std::string;
@@ -36,6 +35,7 @@ class CJeu
 	int FindPosItem(CPosition pos);
 public:
 	CJeu() throw();
+	~CJeu();
 	bool Fini();
 	bool PartieGagne() const { return partie_gagne; };
 	void AfficherEtat(ostream &) const;

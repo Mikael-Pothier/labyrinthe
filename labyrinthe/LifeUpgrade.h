@@ -14,7 +14,7 @@ public:
 	static const short NB_PAS_DEFAUT = 15;
 	static const char SYMBOLE_DEFAUT = '$';
 
-	void UseItem(CPersonnage &perso) { perso.SetNbPas(perso.GetNbPas() + nb_pas_); }
+	void UseItem(CPersonnage &perso) override{ perso.SetNbPas(perso.GetNbPas() + nb_pas_); }
 
 	static char GetSymbole() { return SYMBOLE_DEFAUT; };
 

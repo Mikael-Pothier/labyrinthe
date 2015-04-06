@@ -24,6 +24,11 @@ CJeu::CJeu() throw() : perso_(POS_PERSO_DEFAUT),
 	CEspace::EtablirVisibles(perso_.GetPosition(), perso_.GetVision());
 }
 
+CJeu::~CJeu()
+{
+	//delete 
+}
+
 bool CJeu::Gagne()
 {
 	return perso_.GetPosition() == objectif_;
@@ -35,13 +40,9 @@ bool CJeu::Perd()
 }
 
 bool CJeu::Fini()
-{
-	if (Gagne())
-		partie_gagne = true;
-	if(partie_gagne || Perd())
-		return true;
-
-	return false;
+{	
+	partie_gagne = Gagne();
+	return partie_gagne || Perd;
 }
 
 void CJeu::AfficherEtat(ostream & os) const

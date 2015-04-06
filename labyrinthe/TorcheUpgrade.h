@@ -14,7 +14,7 @@ public:
 	static const short PORTEE_DEFAUT = 3;
 	static const int PORTEE_MAX = 9;
 
-	void UseItem(CPersonnage &perso);
+	void UseItem(CPersonnage &perso) override;
 
 
 	static char GetSymbole() { return SYMBOLE_DEFAUT; };

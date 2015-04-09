@@ -37,8 +37,8 @@ bool CJeu::Perd()
 
 bool CJeu::Fini()
 {	
-	partie_gagne = Gagne();
-	return partie_gagne || Perd();
+	partie_gagne_ = Gagne();
+	return partie_gagne_ || Perd();
 }
 
 void CJeu::AfficherEtat(ostream & os) const
@@ -60,9 +60,7 @@ void CJeu::AfficherEtat(ostream & os) const
 		os << '\n';
 	}
 	os << "Pas restants: " << perso_.GetNbPas() << 
-		  " Vision actuelle: " << perso_.GetVision() << 
-		  " Torche(" << "): " << CTorcheUpgrade::GetSymbole() <<
-		  " Nourriture(" << "): " << CLifeUpgrade::GetSymbole() << '\n';
+		  " Vision actuelle: " << perso_.GetVision() << '\n';
 }
 
 void CJeu::AfficherResultats(ostream & os) const
@@ -75,11 +73,11 @@ void CJeu::Executer(const CCommande & c)
 {
 	if (c == CMenu::AVANCER)
 	{
-		if (IsWalkable(perso_.GetDirection()))
+		if (DirectionAccessible(perso_.GetDirection()))
 		{
 			perso_.Avancer();
-			perso_.ReduireAllItem();
-			TakeItem();
+			DiminuerEffetsItem();
+			RamasserItem();
 			CEspace::EtablirVisibles(perso_.GetPosition(), perso_.GetVision());
 		}
 	}
@@ -93,45 +91,44 @@ void CJeu::Executer(const CCommande & c)
 	}
 	else if (c == CMenu::RECULER)
 	{
-		if (IsWalkable(perso_.GetDirectionInverse()))
+		if (DirectionAccessible(perso_.GetDirectionInverse()))
 		{
 			perso_.Reculer();
-			perso_.ReduireAllItem();
-			TakeItem();
+			DiminuerEffetsItem();
+			RamasserItem();
 			CEspace::EtablirVisibles(perso_.GetPosition(), perso_.GetVision());
 		}
 	}
 }
 
-bool CJeu::IsWalkable(Orientation direction)
+bool CJeu::DirectionAccessible(Orientation direction)
 {
-	bool walkable = false;
+	bool marchable = false;
 	switch (direction)
 	{
 	case Nord:
-		walkable = CEspace::EstAccessible(perso_.GetPosition().VoisineNord());
+		marchable = CEspace::EstAccessible(perso_.GetPosition().VoisineNord());
 		break;
 	case Sud:
-		walkable = CEspace::EstAccessible(perso_.GetPosition().VoisineSud());
+		marchable = CEspace::EstAccessible(perso_.GetPosition().VoisineSud());
 		break;
 	case Est:
-		walkable = CEspace::EstAccessible(perso_.GetPosition().VoisineEst());
+		marchable = CEspace::EstAccessible(perso_.GetPosition().VoisineEst());
 		break;
 	case Ouest:
-		walkable = CEspace::EstAccessible(perso_.GetPosition().VoisineOuest());
+		marchable = CEspace::EstAccessible(perso_.GetPosition().VoisineOuest());
 		break;
 	}
-	return walkable;
+	return marchable;
 }
 
-void CJeu::FillTorchRandom(int nbTorch)
+void CJeu::PlacerTorchesHasard(int nbTorch)
 {
 	try
 	{
 		for (int i = 0; i < nbTorch; ++i)
 		{
-			CPosition pos = CEspace::TakeSpace();
-			unique_ptr<CTorcheUpgrade>p(new CTorcheUpgrade(pos.GetX(), pos.GetY()));
+			unique_ptr<CTorcheUpgrade> p(new CTorcheUpgrade(CEspace::TrouverEspaceLibre()));
 			items_.push_back(move(p));
 		}
 	}
@@ -139,15 +136,13 @@ void CJeu::FillTorchRandom(int nbTorch)
 	{}
 }
 
-void CJeu::FillLifeRandom(int nbLife)
+void CJeu::PlacerViesHasard(int nbLife)
 {
 	try
 	{
 		for (int i = 0; i < nbLife; ++i)
 		{
-			CPosition pos = CEspace::TakeSpace();
-			unique_ptr<CLifeUpgrade> p(new CLifeUpgrade(pos.GetX(), pos.GetY(), 
-									   CLifeUpgrade::SYMBOLE_DEFAUT, CLifeUpgrade::NB_PAS_DEFAUT));
+			unique_ptr<CLifeUpgrade> p(new CLifeUpgrade(CEspace::TrouverEspaceLibre()));
 			items_.push_back(move(p));
 		}
 	}
@@ -157,15 +152,15 @@ void CJeu::FillLifeRandom(int nbLife)
 
 void CJeu::PlaceItem(int nbTorch, int nbLife)
 {
-	FillTorchRandom(nbTorch);
-	FillLifeRandom(nbLife);
+	PlacerTorchesHasard(nbTorch);
+	PlacerViesHasard(nbLife);
 	for (int i = 0; i < items_.size(); ++i)
 	{
-		CEspace::PlaceInMap(items_[i]->GetPosItem(), items_[i]->GetSymbole());
+		CEspace::Placer(items_[i]->GetPosItem(), items_[i]->GetSymbole());
 	}
 }
 
-int CJeu::FindPosItem(CPosition pos)
+int CJeu::EtablirPosItem(CPosition pos)
 {
 	for (int i = 0; i < items_.size(); ++i)
 	{
@@ -175,14 +170,27 @@ int CJeu::FindPosItem(CPosition pos)
 	return -1;
 }
 
-void CJeu::TakeItem()
+void CJeu::DiminuerEffetsItem()
 {
-	int posItem = FindPosItem(perso_.GetPosition());
+	for (auto& kv : objets_actifs_) {
+		if (--kv.second == 0)
+		{
+			//ici on appelle ReduireVision étant donné que nous n'avons que des torches;
+			//il faudra changer un peu cette approche si on ajoute d'autres items ayant une durée dans le futur
+			perso_.ReduireVision(kv.first->GetBonus()); 
+		}
+	}
+}
 
-	if (posItem != -1)
+void CJeu::RamasserItem()
+{
+	int posItem = EtablirPosItem(perso_.GetPosition());
+
+	if (posItem >= 0)
 	{
-		items_[posItem]->UseItem(perso_);
-		CEspace::RemoveFromMap(items_[posItem]->GetPosItem());
+		items_[posItem]->UtiliserItem(perso_);
+		CEspace::Retirer(items_[posItem]->GetPosItem());
+		objets_actifs_[move(items_[posItem])] = items_[posItem]->GetDuree();
 		items_.erase(items_.begin() + posItem, items_.begin() + posItem + 1);
 	}
 }

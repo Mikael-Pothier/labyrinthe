@@ -45,6 +45,11 @@ short CPersonnage::GetVision() const
 	return vision_;
 }
 
+short CPersonnage::GetVisionDefaut() const
+{
+	return VISION_DEFAUT;
+}
+
 void CPersonnage::SetVision(unsigned short vision)
 {
 	vision_ = vision;
@@ -86,6 +91,14 @@ void CPersonnage::DescendrePas()
 	--nb_pas_;
 }
 
+void CPersonnage::ReduireVision(short nb)
+{
+	if (GetVision() - nb >= GetVisionDefaut())
+		SetVision(GetVision() - nb);
+	else
+		SetVision(GetVisionDefaut());
+}
+
 CPosition CPersonnage::GetPosition() const
 {
 	return pos_personnage_;
@@ -94,25 +107,6 @@ CPosition CPersonnage::GetPosition() const
 unsigned short CPersonnage::GetVitesse() const
 {
 	return vitesse_;
-}
-
-unsigned short CPersonnage::GetItem(char symbole)
-{
-	if (DureeItem_.find(symbole) != DureeItem_.end())
-	{
-		return DureeItem_[symbole];
-	}
-	return 0;
-}
-
-void CPersonnage::SetItem(char symbole, unsigned short nb)
-{
-	DureeItem_[symbole] = nb;
-}
-
-void CPersonnage::AjouterDuree(char symbole, unsigned short nb)
-{
-	DureeItem_[symbole] += nb;
 }
 
 void CPersonnage::SetVitesse(const unsigned short vitesse)
@@ -188,20 +182,4 @@ ostream & operator<<(ostream &os, const CPersonnage &p)
 void CPersonnage::SetPosition(CPosition pos)
 {
 	pos_personnage_ = pos;
-}
-
-void CPersonnage::ReduireAllItem()
-{
-	if (DureeItem_.find('#') != DureeItem_.end())
-	{
-		reduireItem('#');
-		if (DureeItem_['#'] == 0)
-			SetVision(VISION_DEFAUT);
-	}
-}
-
-void CPersonnage::reduireItem(char symbole)
-{
-	if(DureeItem_[symbole] >0)
-		--DureeItem_[symbole];
 }

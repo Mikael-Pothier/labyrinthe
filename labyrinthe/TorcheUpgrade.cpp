@@ -1,34 +1,20 @@
 #include "TorcheUpgrade.h";
 
 
-CTorcheUpgrade::CTorcheUpgrade(CPosition pos, char Symbole, unsigned short augmentation, unsigned short duree) : CItem(pos, Symbole,duree)
+CTorcheUpgrade::CTorcheUpgrade(CPosition pos, char Symbole, unsigned short augmentation, unsigned short duree) : CItem(pos, Symbole, duree, augmentation)
 {
-	if (augmentation > 0)
-		portee_ = augmentation;
-	else
-		portee_ = PORTEE_DEFAUT;
+
 }
 
-CTorcheUpgrade::CTorcheUpgrade(short x, short y, char Symbole, unsigned short augmentation, unsigned short duree) : CItem(x, y, Symbole,duree)
+CTorcheUpgrade::CTorcheUpgrade(short x, short y, char Symbole, unsigned short augmentation, unsigned short duree) : CItem(CPosition(x, y), Symbole, duree, augmentation)
 {
-	if (augmentation > 0)
-		portee_ = augmentation;
-	else
-		portee_ = PORTEE_DEFAUT;
+
 }
 
-unsigned short CTorcheUpgrade::getPortee()
+void CTorcheUpgrade::UtiliserItem(CPersonnage &perso)
 {
-	return portee_;
-}
-
-void CTorcheUpgrade::UseItem(CPersonnage &perso)
-{
-
-	if (perso.GetVision() + portee_ <= PORTEE_MAX)
-		perso.SetVision(perso.GetVision() + portee_);
+	if (perso.GetVision() + GetBonus() <= PORTEE_MAX)
+		perso.SetVision(perso.GetVision() + GetBonus());
 	else
 		perso.SetVision(PORTEE_MAX);
-
-	perso.AjouterDuree(GetSymbole(), getduree());
 }

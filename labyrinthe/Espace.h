@@ -16,7 +16,7 @@ class CEspace
 {
 	static vector<vector<char>> Map_;
 	static vector<CPosition> Visibles_;
-	static vector<CPosition> Libre_;
+	static vector<CPosition> Libres_;
 	static CPosition Debut_,
 					 Fin_;
 public:
@@ -52,9 +52,9 @@ public:
 		return false;
 	}
 
-	static CPosition TakeSpace();
+	static CPosition TrouverEspaceLibre();
 
-	static void AddSpace(CPosition newPos);
+	static void AjouterEspaceLibre(CPosition newPos);
 
 	static void CreerEspace(const string &);
 
@@ -96,6 +96,6 @@ public:
 		}
 		return CPosition(0,0);
 	}
-	static void PlaceInMap(CPosition pos, char symbol);
-	static void RemoveFromMap(CPosition);
+	static void Placer(CPosition pos, char symbol);
+	static void Retirer(CPosition);
 };

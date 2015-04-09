@@ -3,22 +3,20 @@
 
 class CLifeUpgrade : public CItem
 {
+	unsigned  short nb_pas_;
 public:
-	CLifeUpgrade(CPosition pos, char symbole);
-	CLifeUpgrade(CPosition pos, char symbole, unsigned short augmentation);
-	CLifeUpgrade(short x, short y, char symbole, unsigned short augmentation);
-	CLifeUpgrade(short x, short y, char symbole);
 
-	unsigned short getNbPas();
+	CLifeUpgrade(CPosition pos, char symbole = SYMBOLE_DEFAUT, 
+				 unsigned short augmentation = BONUS_DEFAUT);
 
-	static const short NB_PAS_DEFAUT = 15;
+	CLifeUpgrade(short x, short y, char symbole = SYMBOLE_DEFAUT, 
+				 unsigned short augmentation = BONUS_DEFAUT);
+
+	static const short BONUS_DEFAUT = 15;
 	static const char SYMBOLE_DEFAUT = '$';
 
-	void UseItem(CPersonnage &perso) override{ perso.SetNbPas(perso.GetNbPas() + nb_pas_); }
-
-	static char GetSymbole() { return SYMBOLE_DEFAUT; };
-
-private:
-	unsigned  short nb_pas_;
-
+	void UtiliserItem(CPersonnage &perso) override
+	{ 
+		perso.SetNbPas(perso.GetNbPas() + GetBonus()); 
+	}
 };

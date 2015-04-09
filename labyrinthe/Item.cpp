@@ -1,18 +1,17 @@
 #include "Item.h";
 
-CItem::CItem(CPosition pos, char symbole, unsigned short duree)
+CItem::CItem(CPosition pos, char symbole, unsigned short duree, unsigned short bonus)
 {
 	SetPosItem(pos);
 	symbole_ = symbole;
 	duree_ = duree;
+	bonus_ = bonus;
 }
 
-CItem::CItem(short x, short y, char symbole, unsigned short duree)
+CItem::CItem(short x, short y, char symbole, unsigned short duree, unsigned short bonus) :
+		CItem(CPosition(x,y), symbole, duree, bonus)
 {
-	CPosition pos(x, y);
-	SetPosItem(pos);
-	symbole_ = symbole;
-	duree_ = duree;
+
 }
 
 CItem::CItem(CPosition pos, char symbole)
@@ -22,12 +21,9 @@ CItem::CItem(CPosition pos, char symbole)
 	duree_ = 0;
 }
 
-CItem::CItem(short x, short y, char symbole)
+CItem::CItem(short x, short y, char symbole) : CItem(CPosition(x, y), symbole)
 {
-	CPosition pos(x, y);
-	SetPosItem(pos);
-	symbole_ = symbole;
-	duree_ = 0;
+
 }
 
 CPosition CItem::GetPosItem() const
@@ -45,9 +41,14 @@ char CItem::GetSymbole() const
 	return symbole_;
 }
 
-unsigned short CItem::getduree() const
+unsigned short CItem::GetDuree() const
 {
 	return duree_;
+}
+
+unsigned short CItem::GetBonus() const
+{
+	return bonus_;
 }
 
 bool CItem::operator==(CItem const& a)

@@ -19,7 +19,7 @@ CJeu::CJeu() throw() : perso_(POS_PERSO_DEFAUT),
 					   espace_jeu_(ESPACE_JEU_DEFAUT)
 {
 	CEspace::CreerEspace(espace_jeu_);
-	PlaceItem(NBTORCH_DEFAUT,NBLIFE_DEFAUT);
+	PlacerItems(NBTORCH_DEFAUT,NBLIFE_DEFAUT);
 	perso_.SetPosition(CEspace::EtablirPosition(CEspace::DEPART));
 	CEspace::EtablirVisibles(perso_.GetPosition(), perso_.GetVision());
 	objectif_ = CEspace::EtablirPosition(CEspace::FIN);
@@ -150,7 +150,7 @@ void CJeu::PlacerViesHasard(int nbLife)
 	{}
 }
 
-void CJeu::PlaceItem(int nbTorch, int nbLife)
+void CJeu::PlacerItems(int nbTorch, int nbLife)
 {
 	PlacerTorchesHasard(nbTorch);
 	PlacerViesHasard(nbLife);

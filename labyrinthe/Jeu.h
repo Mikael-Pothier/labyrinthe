@@ -54,5 +54,5 @@ public:
 	void AfficherResultats(ostream &) const;
 
 	void Executer(const CCommande &);
-	void PlaceItem(int nbTorch, int nbLife);
+	void PlacerItems(int nbTorch, int nbLife);
 };

@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CCommande">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAJAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commande.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CEspace">
+    <Position X="11.75" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="CEspace::MapPleine" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Espace.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Enum Name="CEspace::__unnamed_enum_0004_1" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Espace.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="CEspace::__unnamed_enum_0004_2" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Espace.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAgBABIJACBEgACAAAAAQAABBAEAAAEhAEAAAAAAAAI=</HashCode>
+      <FileName>Espace.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CItem">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAIAQAAAAAACIAAAAAKgQAAAAAAAAAACCAAAQAAAAA=</HashCode>
+      <FileName>Item.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CJeu">
+    <Position X="9.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gCIIAgAIAAAAgAABAggDAAAIECBAiAAAYEgAAAWAAAA=</HashCode>
+      <FileName>Jeu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CLifeUpgrade">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAABAAAAAAAAAAAAAAgAAQAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>LifeUpgrade.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMenu">
+    <Position X="5.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAIAAAAABAAQAABAAAAAAgAAAAAAAAAgAA=</HashCode>
+      <FileName>Menu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CPersonnage">
+    <Position X="7" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gAgACAAIACAIAIBIGBBAAAEAEABAAwggBEWAAAAAAEA=</HashCode>
+      <FileName>Personnage.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CPosition">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAMAAAAQYAAggAAAAAYAAAAAAAAAA=</HashCode>
+      <FileName>Position.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CTorcheUpgrade">
+    <Position X="2.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAQAAAAAAAgAAAAAAAAQAgAAQAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TorcheUpgrade.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Orientation">
+    <Position X="5.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAAQAAAAAAAIACAQ=</HashCode>
+      <FileName>Orientation.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
